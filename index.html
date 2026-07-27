@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Diego | Diretamente da Fronteira — Sua ponte segura para o Paraguai">
+    <meta name="theme-color" content="#060914">
+    <title>Diego | Diretamente da Fronteira</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --gold: #C9A84C;
+            --gold-light: #E8C96B;
+            --gold-dark: #9A7B2E;
+            --bg: #060914;
+            --bg-card: rgba(255,255,255,0.04);
+            --bg-card-hover: rgba(255,255,255,0.07);
+            --border: rgba(201,168,76,0.25);
+            --border-card: rgba(255,255,255,0.07);
+            --text: #FFFFFF;
+            --text-muted: #7A8FA6;
+            --text-subtle: #3A4A5A;
+            --radius: 16px;
+            --radius-sm: 12px;
+        }
+
+        html { background: var(--bg); }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            min-height: 100vh;
+            min-height: 100dvh;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* ── BACKGROUND ANIMADO ── */
+        .bg-glow {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .bg-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0;
+            animation: orbAppear 1.2s ease forwards;
+        }
+
+        .bg-orb-1 {
+            width: 400px; height: 400px;
+            top: -150px; left: 50%;
+            transform: translateX(-50%);
+            background: radial-gradient(circle, rgba(201,168,76,0.10) 0%, transparent 70%);
+            animation-delay: 0.3s;
+        }
+
+        .bg-orb-2 {
+            width: 300px; height: 300px;
+            bottom: -100px; right: -80px;
+            background: radial-gradient(circle, rgba(201,168,76,0.05) 0%, transparent 70%);
+            animation-delay: 0.6s;
+        }
+
+        @keyframes orbAppear {
+            to { opacity: 1; }
+        }
+
+        /* ── PARTÍCULAS FLUTUANTES ── */
+        .particle {
+            position: fixed;
+            width: 2px; height: 2px;
+            border-radius: 50%;
+            background: var(--gold);
+            opacity: 0;
+            animation: floatParticle linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes floatParticle {
+            0%   { transform: translateY(100vh) scale(0); opacity: 0; }
+            10%  { opacity: 0.4; }
+            90%  { opacity: 0.15; }
+            100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+        }
+
+        /* ── ANIMAÇÕES DE ENTRADA ── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.75); }
+            to   { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes slideRight {
+            from { opacity: 0; transform: translateX(-20px); }
+            to   { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(201,168,76,0.2); }
+            50%       { box-shadow: 0 0 40px rgba(201,168,76,0.45), 0 16px 48px rgba(201,168,76,0.25); }
+        }
+
+        @keyframes ringRotate {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(360deg); }
+        }
+
+        @keyframes shimmer {
+            0%   { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        /* Respeita preferência do sistema */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation: none !important; transition: none !important; }
+        }
+
+        /* ── LAYOUT ── */
+        .page {
+            position: relative;
+            z-index: 1;
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 48px 18px calc(48px + env(safe-area-inset-bottom));
+            padding-top: max(48px, env(safe-area-inset-top));
+        }
+
+        /* ── HERO ── */
+        .hero {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .avatar-wrap {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+            animation: scaleIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s both;
+        }
+
+        .avatar-ring-outer {
+            width: 104px; height: 104px;
+            border-radius: 50%;
+            padding: 2px;
+            position: relative;
+        }
+
+        .avatar-ring-outer::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 50%;
+            background: conic-gradient(
+                var(--gold-dark) 0deg,
+                var(--gold-light) 90deg,
+                var(--gold) 180deg,
+                var(--gold-dark) 270deg,
+                var(--gold-light) 360deg
+            );
+            animation: ringRotate 6s linear infinite;
+            z-index: 0;
+        }
+
+        .avatar-ring-outer::after {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            border-radius: 50%;
+            background: var(--bg);
+            z-index: 1;
+        }
+
+        .avatar-inner {
+            position: relative;
+            z-index: 2;
+            width: 100px; height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: #0E1525;
+            margin: 2px;
+        }
+
+        .avatar-inner img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .verified-badge {
+            position: absolute;
+            bottom: 4px; right: 4px;
+            width: 26px; height: 26px;
+            background: var(--gold);
+            border-radius: 50%;
+            border: 2.5px solid var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 3;
+            box-shadow: 0 0 12px rgba(201,168,76,0.6);
+            animation: scaleIn 0.4s cubic-bezier(0.34,1.56,0.64,1) 0.7s both;
+        }
+
+        .hero-name {
+            font-size: 28px; font-weight: 900;
+            letter-spacing: -0.6px; line-height: 1;
+            margin-bottom: 5px;
+            animation: fadeUp 0.5s ease 0.3s both;
+        }
+
+        .hero-handle {
+            font-size: 11px; font-weight: 700;
+            color: var(--gold); letter-spacing: 2.5px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            animation: fadeUp 0.5s ease 0.4s both;
+        }
+
+        .hero-tagline {
+            font-size: 14px; color: var(--text-muted);
+            line-height: 1.6; max-width: 290px;
+            margin: 0 auto;
+            animation: fadeUp 0.5s ease 0.5s both;
+        }
+
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 7px;
+            margin-top: 14px;
+            padding: 7px 13px;
+            background: rgba(201,168,76,0.07);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            font-size: 10px; font-weight: 800;
+            letter-spacing: 1.4px; text-transform: uppercase;
+            color: var(--gold-light);
+            animation: fadeUp 0.5s ease 0.55s both;
+        }
+        .hero-badge svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+        .reach-line {
+            display: flex; align-items: center; justify-content: center;
+            gap: 8px;
+            margin: 0 0 12px;
+            font-size: 12px; color: var(--text-muted);
+            animation: fadeUp 0.5s ease 0.55s both;
+        }
+        .reach-line strong { color: var(--gold-light); font-weight: 800; }
+        .reach-dot {
+            width: 7px; height: 7px; border-radius: 50%;
+            background: #34D399; flex-shrink: 0;
+            animation: pulseDot 2s ease infinite;
+        }
+        @keyframes pulseDot {
+            0%   { box-shadow: 0 0 0 0 rgba(52,211,153,0.5); }
+            70%  { box-shadow: 0 0 0 8px rgba(52,211,153,0); }
+            100% { box-shadow: 0 0 0 0 rgba(52,211,153,0); }
+        }
+
+        /* ── PROVA SOCIAL ── */
+        .proof-bar {
+            display: grid;
+            grid-template-columns: 1fr 1px 1fr 1px 1fr;
+            align-items: center;
+            padding: 18px 16px;
+            background: rgba(201,168,76,0.05);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            margin-bottom: 28px;
+            position: relative;
+            overflow: hidden;
+            animation: fadeUp 0.5s ease 0.55s both;
+        }
+
+        .proof-bar::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, transparent 0%, var(--gold) 50%, transparent 100%);
+            opacity: 0.7;
+        }
+
+        /* Shimmer no proof bar */
+        .proof-bar::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(105deg, transparent 40%, rgba(201,168,76,0.06) 50%, transparent 60%);
+            background-size: 200% 100%;
+            animation: shimmer 4s ease infinite 1.5s;
+            pointer-events: none;
+        }
+
+        .proof-item { text-align: center; }
+
+        .proof-number {
+            font-size: 21px; font-weight: 900;
+            color: var(--gold-light); line-height: 1;
+            margin-bottom: 5px; letter-spacing: -0.5px;
+        }
+
+        .proof-platform {
+            font-size: 9px; font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase; letter-spacing: 1.2px;
+        }
+
+        .proof-divider { height: 30px; background: var(--border-card); }
+
+        /* ── SECTION LABEL ── */
+        .section-label {
+            font-size: 9px; font-weight: 700;
+            color: var(--text-subtle);
+            text-transform: uppercase; letter-spacing: 2px;
+            text-align: center;
+            margin: 0 0 12px;
+            display: flex; align-items: center; gap: 10px;
+        }
+
+        .section-label::before, .section-label::after {
+            content: ''; flex: 1;
+            height: 1px; background: var(--border-card);
+        }
+
+        /* ── CTA PRINCIPAL ── */
+        .cta-primary {
+            display: block; position: relative;
+            text-decoration: none;
+            padding: 22px 60px 22px 22px;
+            background: linear-gradient(135deg, var(--gold) 0%, #B8922A 60%, #9A7B2E 100%);
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin-bottom: 28px;
+            transition: transform 0.2s ease;
+            animation: fadeUp 0.5s ease 0.65s both;
+            -webkit-animation: fadeUp 0.5s ease 0.65s both;
+        }
+
+        /* Brilho interno */
+        .cta-primary::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.18) 0%, transparent 55%);
+            pointer-events: none;
+        }
+
+        /* Círculo decorativo */
+        .cta-primary::after {
+            content: '';
+            position: absolute;
+            bottom: -40px; right: -40px;
+            width: 130px; height: 130px;
+            background: rgba(0,0,0,0.08);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .cta-primary:active { transform: scale(0.98); }
+
+        @media (hover: hover) {
+            .cta-primary:hover {
+                transform: translateY(-3px);
+                animation: glowPulse 2s ease infinite;
+            }
+        }
+
+        .cta-tag {
+            font-size: 9px; font-weight: 800;
+            letter-spacing: 2px; text-transform: uppercase;
+            color: rgba(0,0,0,0.4); margin-bottom: 5px;
+        }
+
+        .cta-title {
+            font-size: 19px; font-weight: 900;
+            color: #05080F; line-height: 1.15;
+            letter-spacing: -0.4px; margin-bottom: 5px;
+        }
+
+        .cta-sub {
+            font-size: 12px; color: rgba(0,0,0,0.48); font-weight: 500;
+        }
+
+        .cta-arrow {
+            position: absolute; right: 18px; top: 50%;
+            transform: translateY(-50%);
+            width: 38px; height: 38px;
+            background: rgba(0,0,0,0.12);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 1;
+        }
+
+        /* ── CARDS ── */
+        .links-stack {
+            display: flex; flex-direction: column;
+            gap: 8px; margin-bottom: 28px;
+        }
+
+        .link-card {
+            display: flex; align-items: center;
+            gap: 14px;
+            padding: 15px 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: var(--radius);
+            text-decoration: none; color: inherit;
+            transition: background 0.2s, border-color 0.2s, transform 0.2s;
+            position: relative; overflow: hidden;
+            cursor: pointer;
+            /* touch */
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .link-card::before {
+            content: '';
+            position: absolute; left: 0; top: 15%; bottom: 15%;
+            width: 2px;
+            background: var(--gold);
+            border-radius: 0 2px 2px 0;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .link-card:active {
+            background: var(--bg-card-hover);
+            border-color: var(--border);
+            transform: scale(0.98);
+        }
+
+        @media (hover: hover) {
+            .link-card:hover {
+                background: var(--bg-card-hover);
+                border-color: var(--border);
+                transform: translateX(4px);
+            }
+            .link-card:hover::before { opacity: 1; }
+            .link-card:hover .link-chevron { color: var(--gold); transform: translateX(2px); }
+        }
+
+        /* Animação escalonada dos cards */
+        .link-card:nth-child(1) { animation: fadeUp 0.45s ease 0.7s both; }
+        .link-card:nth-child(2) { animation: fadeUp 0.45s ease 0.8s both; }
+        .link-card:nth-child(3) { animation: fadeUp 0.45s ease 0.9s both; }
+        .link-card:nth-child(4) { animation: fadeUp 0.45s ease 1.0s both; }
+        .link-card:nth-child(5) { animation: fadeUp 0.45s ease 1.1s both; }
+        .link-card:nth-child(6) { animation: fadeUp 0.45s ease 1.2s both; }
+        .link-card:nth-child(7) { animation: fadeUp 0.45s ease 1.3s both; }
+
+        .link-icon {
+            width: 44px; height: 44px;
+            border-radius: var(--radius-sm);
+            background: rgba(201,168,76,0.08);
+            border: 1px solid rgba(201,168,76,0.15);
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .link-icon svg { width: 20px; height: 20px; }
+
+        .link-text { flex: 1; min-width: 0; }
+
+        .link-title {
+            font-size: 14px; font-weight: 700;
+            color: var(--text); margin-bottom: 2px;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+
+        .link-desc {
+            font-size: 12px; color: var(--text-muted);
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+
+        .link-badge {
+            font-size: 9px; font-weight: 800;
+            padding: 4px 9px; border-radius: 20px;
+            letter-spacing: 0.6px; white-space: nowrap; flex-shrink: 0;
+        }
+
+        .badge-gold {
+            background: rgba(201,168,76,0.12);
+            color: var(--gold-light);
+            border: 1px solid rgba(201,168,76,0.25);
+        }
+
+        .badge-new {
+            background: rgba(16,185,129,0.1);
+            color: #34D399;
+            border: 1px solid rgba(16,185,129,0.2);
+        }
+
+        .link-chevron {
+            color: var(--text-subtle); flex-shrink: 0;
+            transition: color 0.2s, transform 0.2s;
+        }
+
+        /* ── AVISO ── */
+        .notice-card {
+            display: flex; align-items: flex-start;
+            gap: 12px;
+            padding: 14px 16px;
+            background: rgba(201,168,76,0.06);
+            border: 1px solid rgba(201,168,76,0.3);
+            border-radius: var(--radius);
+            margin-bottom: 8px;
+        }
+
+        .notice-icon {
+            flex-shrink: 0; margin-top: 1px;
+            color: var(--gold);
+        }
+
+        .notice-text {
+            font-size: 12px; font-weight: 600;
+            color: var(--gold-light); line-height: 1.5;
+        }
+
+        .notice-text strong {
+            display: block; font-size: 11px;
+            font-weight: 800; letter-spacing: 0.5px;
+            text-transform: uppercase; margin-bottom: 2px;
+            color: var(--gold);
+        }
+
+        /* ── SEPARADOR ── */
+        .sep {
+            display: flex; align-items: center; gap: 12px;
+            margin: 24px 0;
+            animation: fadeUp 0.45s ease 1.15s both;
+        }
+
+        .sep-line { flex: 1; height: 1px; background: var(--border-card); }
+
+        .sep-icon { width: 18px; height: 18px; color: var(--text-subtle); opacity: 0.4; }
+
+        /* ── REDES SOCIAIS ── */
+        .social-section {
+            margin-bottom: 28px;
+            animation: fadeUp 0.45s ease 1.2s both;
+        }
+
+        .social-row {
+            display: flex; justify-content: center; gap: 10px;
+        }
+
+        .social-btn {
+            display: flex; align-items: center; justify-content: center;
+            width: 54px; height: 54px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: var(--radius-sm);
+            text-decoration: none; color: var(--text-muted);
+            transition: all 0.2s ease;
+            /* touch */
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .social-btn svg { width: 22px; height: 22px; fill: currentColor; }
+
+        .social-btn:active {
+            border-color: var(--border);
+            color: var(--gold);
+            background: rgba(201,168,76,0.08);
+            transform: scale(0.93);
+        }
+
+        @media (hover: hover) {
+            .social-btn:hover {
+                border-color: var(--border);
+                color: var(--gold);
+                background: rgba(201,168,76,0.08);
+                transform: translateY(-4px);
+                box-shadow: 0 8px 24px rgba(201,168,76,0.15);
+            }
+        }
+
+        /* ── FOOTER ── */
+        .footer {
+            text-align: center;
+            animation: fadeUp 0.45s ease 1.3s both;
+        }
+
+        .footer-rule {
+            display: flex; align-items: center;
+            gap: 8px; justify-content: center;
+            margin-bottom: 12px;
+        }
+
+        .footer-line { width: 40px; height: 1px; background: var(--border-card); }
+        .footer-dot  { width: 3px; height: 3px; border-radius: 50%; background: var(--gold); opacity: 0.35; }
+
+        .footer-text { font-size: 11px; color: var(--text-subtle); }
+
+        /* ── MODAL ── */
+        .modal-overlay {
+            display: none;
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 200;
+            align-items: flex-end;
+            justify-content: center;
+            padding: 0;
+        }
+
+        .modal-overlay.open { display: flex; }
+
+        .modal-sheet {
+            background: #0F1825;
+            border: 1px solid rgba(201,168,76,0.2);
+            border-radius: 24px 24px 0 0;
+            max-width: 480px; width: 100%;
+            max-height: 90vh; max-height: 90dvh;
+            overflow-y: auto;
+            padding: 20px 22px calc(32px + env(safe-area-inset-bottom));
+            position: relative;
+            transform: translateY(100%);
+            transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .modal-overlay.open .modal-sheet {
+            transform: translateY(0);
+        }
+
+        .modal-handle {
+            width: 36px; height: 4px;
+            background: rgba(255,255,255,0.12);
+            border-radius: 2px; margin: 0 auto 22px;
+        }
+
+        .modal-close {
+            position: absolute; top: 18px; right: 18px;
+            width: 34px; height: 34px;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 50%; color: var(--text-muted);
+            font-size: 15px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: background 0.2s;
+            font-family: inherit;
+        }
+
+        .modal-close:active { background: rgba(255,255,255,0.12); }
+
+        .modal-tag {
+            font-size: 9px; font-weight: 800;
+            letter-spacing: 2px; color: var(--gold);
+            text-transform: uppercase; margin-bottom: 6px;
+        }
+
+        .modal-title {
+            font-size: 22px; font-weight: 900;
+            letter-spacing: -0.4px; line-height: 1.2;
+            margin-bottom: 8px;
+        }
+
+        .modal-desc {
+            font-size: 13px; color: var(--text-muted);
+            line-height: 1.55; margin-bottom: 20px;
+        }
+
+        .modal-divider { height: 1px; background: rgba(255,255,255,0.06); margin-bottom: 18px; }
+
+        .modal-list-label {
+            font-size: 9px; font-weight: 700;
+            letter-spacing: 1.5px; color: var(--text-muted);
+            text-transform: uppercase; margin-bottom: 14px;
+        }
+
+        .modal-list {
+            list-style: none;
+            display: flex; flex-direction: column; gap: 11px;
+            margin-bottom: 26px;
+        }
+
+        .modal-list li {
+            display: flex; align-items: flex-start;
+            gap: 10px; font-size: 14px; color: #C8D8E8;
+            line-height: 1.4;
+        }
+
+        .check-icon {
+            flex-shrink: 0; margin-top: 1px;
+        }
+
+        .modal-cta {
+            display: block; text-align: center;
+            padding: 18px 24px;
+            background: linear-gradient(135deg, var(--gold) 0%, #B8922A 100%);
+            color: #05080F; font-size: 16px; font-weight: 900;
+            border-radius: 14px; text-decoration: none;
+            letter-spacing: -0.2px;
+            transition: transform 0.15s, box-shadow 0.15s;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .modal-cta:active {
+            transform: scale(0.97);
+            box-shadow: 0 6px 20px rgba(201,168,76,0.3);
+        }
+
+        @media (hover: hover) {
+            .modal-cta:hover {
+                box-shadow: 0 12px 36px rgba(201,168,76,0.4);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background animado -->
+    <div class="bg-glow">
+        <div class="bg-orb bg-orb-1"></div>
+        <div class="bg-orb bg-orb-2"></div>
+    </div>
+
+    <!-- Partículas -->
+    <div id="particles"></div>
+
+    <div class="page">
+
+        <!-- HERO -->
+        <div class="hero">
+            <div class="avatar-wrap">
+                <div class="avatar-ring-outer">
+                    <div class="avatar-inner">
+                        <img src="data:image/jpeg;base64,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" alt="Diego — Diretamente da Fronteira">
+                    </div>
+                </div>
+                <div class="verified-badge">
+                    <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+                        <path d="M2.5 6.5L5.5 9.5L10.5 3.5" stroke="#05080F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+
+            <h1 class="hero-name">Diego</h1>
+            <p class="hero-handle">Diretamente da Fronteira</p>
+            <p class="hero-tagline">Imigração, compras e a vida real no Paraguai — sem enrolação, direto de quem vive aqui.</p>
+            <div class="hero-badge">
+                <svg viewBox="0 0 24 24" fill="#E8C96B"><path d="M12 2l2.9 6.26L21.5 9.3l-4.75 4.64L17.8 21 12 17.77 6.2 21l1.05-7.06L2.5 9.3l6.6-1.04z"/></svg>
+                Quem vive na fronteira
+            </div>
+        </div>
+
+        <!-- PROVA SOCIAL -->
+        <p class="reach-line">
+            <span class="reach-dot"></span>
+            <strong>+136 mil seguidores</strong> somando todas as redes
+        </p>
+        <div class="proof-bar">
+            <div class="proof-item">
+                <div class="proof-number" data-target="46400" data-suffix="K">46,4K</div>
+                <div class="proof-platform">TikTok</div>
+            </div>
+            <div class="proof-divider"></div>
+            <div class="proof-item">
+                <div class="proof-number" data-target="76100" data-suffix="K">76,1K</div>
+                <div class="proof-platform">Instagram</div>
+            </div>
+            <div class="proof-divider"></div>
+            <div class="proof-item">
+                <div class="proof-number" data-target="14030" data-suffix="K">14,0K</div>
+                <div class="proof-platform">YouTube</div>
+            </div>
+        </div>
+
+        <!-- CTA PRINCIPAL -->
+        <p class="section-label">Assessoria</p>
+        <a href="https://wa.me/595981459106?text=Ol%C3%A1%20Diego!%20Vim%20pelo%20link%20e%20quero%20informa%C3%A7%C3%B5es%20sobre%20imigra%C3%A7%C3%A3o%20para%20o%20Paraguai." target="_blank" rel="noopener" class="cta-primary">
+            <div class="cta-tag">Especialista em imigração</div>
+            <div class="cta-title">Quero Imigrar<br>para o Paraguai</div>
+            <div class="cta-sub">Atendimento direto · Vagas limitadas</div>
+            <div class="cta-arrow">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <path d="M3 9H15M10 4L15 9L10 14" stroke="#05080F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+        </a>
+
+        <!-- LINKS -->
+        <p class="section-label">Recursos & Canal</p>
+        <div class="links-stack">
+
+            <!-- Guia -->
+            <div class="link-card" onclick="openModal()">
+                <div class="link-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                </div>
+                <div class="link-text">
+                    <div class="link-title">Guia de Sobrevivência: Mutirão 2026</div>
+                    <div class="link-desc">Ebook — Documentos para Admissão</div>
+                </div>
+                <span class="link-badge badge-new">VER POR DENTRO</span>
+            </div>
+
+            <!-- YouTube -->
+            <a href="https://www.youtube.com/@diretamentedafronteira" target="_blank" rel="noopener" class="link-card">
+                <div class="link-icon">
+                    <svg viewBox="0 0 24 24" fill="#C9A84C">
+                        <path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/>
+                    </svg>
+                </div>
+                <div class="link-text">
+                    <div class="link-title">YouTube — Diretamente da Fronteira</div>
+                    <div class="link-desc">Imigração, compras e vida real no Paraguai</div>
+                </div>
+                <svg class="link-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+
+            <!-- Parcerias -->
+            <a href="https://wa.me/595981459106?text=Ol%C3%A1%20Diego!%20Tenho%20interesse%20em%20parceria%2Fdivulga%C3%A7%C3%A3o%20de%20loja." target="_blank" rel="noopener" class="link-card">
+                <div class="link-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>
+                    </svg>
+                </div>
+                <div class="link-text">
+                    <div class="link-title">Parcerias e Divulgação</div>
+                    <div class="link-desc">Leve sua marca para o público da fronteira</div>
+                </div>
+                <svg class="link-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+
+            <!-- Câmbios -->
+            <a href="https://wa.me/5493413263967?text=Ol%C3%A1%20Vanderlei!%20Vim%20pelo%20canal%20Diretamente%20da%20Fronteira%20e%20quero%20informa%C3%A7%C3%B5es%20sobre%20c%C3%A2mbio." target="_blank" rel="noopener" class="link-card">
+                <div class="link-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+                        <circle cx="12" cy="12" r="5"/>
+                        <path d="M9.5 10.5c.5-1 1.5-1.5 2.5-1.5s2 .7 2 1.8c0 1.8-2.5 2.2-2.5 4"/>
+                        <circle cx="12" cy="17" r=".5" fill="#C9A84C"/>
+                    </svg>
+                </div>
+                <div class="link-text">
+                    <div class="link-title">Casa de Câmbios — Vanderlei</div>
+                    <div class="link-desc">Bras Câmbios · Atendimento via WhatsApp</div>
+                </div>
+                <svg class="link-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+
+            <!-- Kast -->
+            <a href="https://app.kast.xyz/referral/PARAGUAI" target="_blank" rel="noopener" class="link-card">
+                <div class="link-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="5" width="20" height="14" rx="3"/>
+                        <path d="M2 10h20"/>
+                        <path d="M6 15h4"/>
+                    </svg>
+                </div>
+                <div class="link-text">
+                    <div class="link-title">Kast — Abra sua Conta</div>
+                    <div class="link-desc">Código de indicação: <strong style="color:var(--gold-light)">PARAGUAI</strong></div>
+                </div>
+                <span class="link-badge badge-gold">INDICAÇÃO</span>
+            </a>
+
+            <!-- El Dorado -->
+            <a href="https://link.eldorado.io/9Si4sARcf4b" target="_blank" rel="noopener" class="link-card">
+                <div class="link-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <ellipse cx="12" cy="6" rx="8" ry="3"/>
+                        <path d="M4 6v6c0 1.66 3.58 3 8 3s8-1.34 8-3V6"/>
+                        <path d="M4 12v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6"/>
+                    </svg>
+                </div>
+                <div class="link-text">
+                    <div class="link-title">El Dorado — Dólar Digital & Cripto</div>
+                    <div class="link-desc">Compre e venda USDT com segurança · P2P</div>
+                </div>
+                <span class="link-badge badge-gold">INDICAÇÃO</span>
+            </a>
+
+            <!-- Blog -->
+            <a href="https://blog.diretamentedafronteira.com.br/" target="_blank" rel="noopener" class="link-card">
+                <div class="link-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/>
+                    </svg>
+                </div>
+                <div class="link-text">
+                    <div class="link-title">Blog — Diretamente da Fronteira</div>
+                    <div class="link-desc">Guias e dicas valiosas sobre o Paraguai</div>
+                </div>
+                <svg class="link-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+
+        </div>
+
+        <!-- AVISO -->
+        <div class="notice-card">
+            <svg class="notice-icon" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <circle cx="9" cy="9" r="8" stroke="#C9A84C" stroke-width="1.5"/>
+                <path d="M9 5.5V9.5" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round"/>
+                <circle cx="9" cy="12.5" r="0.8" fill="#C9A84C"/>
+            </svg>
+            <div class="notice-text">
+                <strong>Aviso importante</strong>
+                Não faço envios de mercadoria. Apenas divulgo lojas — o contato e a compra são direto com o lojista.
+            </div>
+        </div>
+
+        <!-- SEPARADOR -->
+        <div class="sep">
+            <div class="sep-line"></div>
+            <svg class="sep-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/><circle cx="5" cy="12" r="2"/>
+            </svg>
+            <div class="sep-line"></div>
+        </div>
+
+        <!-- REDES SOCIAIS -->
+        <div class="social-section">
+            <p class="section-label" style="margin-bottom:16px;">Siga nas Redes</p>
+            <div class="social-row">
+
+                <a href="https://www.tiktok.com/@diretamentedafronteira" target="_blank" rel="noopener" class="social-btn" aria-label="TikTok">
+                    <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.31 6.31 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.27 8.27 0 004.84 1.56V6.79a4.85 4.85 0 01-1.07-.1z"/></svg>
+                </a>
+
+                <a href="https://www.instagram.com/diretamentedafronteira" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                </a>
+
+                <a href="https://www.youtube.com/@diretamentedafronteira" target="_blank" rel="noopener" class="social-btn" aria-label="YouTube">
+                    <svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+                </a>
+
+                <a href="https://wa.me/595981459106" target="_blank" rel="noopener" class="social-btn" aria-label="WhatsApp">
+                    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                </a>
+
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <div class="footer-rule">
+                <div class="footer-line"></div>
+                <div class="footer-dot"></div>
+                <div class="footer-line"></div>
+            </div>
+            <p class="footer-text">© 2026 Diretamente da Fronteira &nbsp;·&nbsp; Assessoria para imigração no Paraguai</p>
+        </div>
+
+    </div>
+
+    <!-- MODAL: GUIA DE SOBREVIVÊNCIA -->
+    <div id="modal-overlay" class="modal-overlay" onclick="closeModal()">
+        <div class="modal-sheet" onclick="event.stopPropagation()">
+            <div class="modal-handle"></div>
+
+            <button class="modal-close" onclick="closeModal()" aria-label="Fechar">✕</button>
+
+            <p class="modal-tag">Ebook Digital</p>
+            <h2 class="modal-title">Guia de Sobrevivência<br>Mutirão 2026</h2>
+            <p class="modal-desc">Material criado por Diego — Diretamente da Fronteira, com orientações práticas para o Mutirão Migramóvel.</p>
+
+            <div class="modal-divider"></div>
+            <p class="modal-list-label">O que você vai encontrar</p>
+
+            <ul class="modal-list">
+                <li>
+                    <svg class="check-icon" width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="rgba(201,168,76,0.12)"/><path d="M5 9l3 3 5-5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Datas informadas dos mutirões
+                </li>
+                <li>
+                    <svg class="check-icon" width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="rgba(201,168,76,0.12)"/><path d="M5 9l3 3 5-5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Lista de documentos brasileiros exigidos
+                </li>
+                <li>
+                    <svg class="check-icon" width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="rgba(201,168,76,0.12)"/><path d="M5 9l3 3 5-5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Orientação sobre Apostila de Haia
+                </li>
+                <li>
+                    <svg class="check-icon" width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="rgba(201,168,76,0.12)"/><path d="M5 9l3 3 5-5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Validade de documentos e antecedentes
+                </li>
+                <li>
+                    <svg class="check-icon" width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="rgba(201,168,76,0.12)"/><path d="M5 9l3 3 5-5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Exigência da vacina de febre amarela impressa
+                </li>
+                <li>
+                    <svg class="check-icon" width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="rgba(201,168,76,0.12)"/><path d="M5 9l3 3 5-5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Valor médio das taxas (pagamento em guaranis)
+                </li>
+                <li>
+                    <svg class="check-icon" width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="rgba(201,168,76,0.12)"/><path d="M5 9l3 3 5-5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Cópias autenticadas em cartório paraguaio
+                </li>
+                <li>
+                    <svg class="check-icon" width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="rgba(201,168,76,0.12)"/><path d="M5 9l3 3 5-5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Polícia Nacional e Interpol
+                </li>
+                <li>
+                    <svg class="check-icon" width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="rgba(201,168,76,0.12)"/><path d="M5 9l3 3 5-5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Diferença entre Mercosul e Nova Lei
+                </li>
+                <li>
+                    <svg class="check-icon" width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="rgba(201,168,76,0.12)"/><path d="M5 9l3 3 5-5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Cronograma ideal de preparação
+                </li>
+                <li>
+                    <svg class="check-icon" width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="rgba(201,168,76,0.12)"/><path d="M5 9l3 3 5-5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Checklist final do que levar no dia
+                </li>
+            </ul>
+
+            <a href="https://pay.kiwify.com.br/VIIpXYB" target="_blank" rel="noopener" class="modal-cta">
+                Garantir meu Ebook agora →
+            </a>
+        </div>
+    </div>
+
+    <script>
+        /* ── PARTÍCULAS ── */
+        (function() {
+            var container = document.getElementById('particles');
+            var count = 12;
+            for (var i = 0; i < count; i++) {
+                var p = document.createElement('div');
+                p.className = 'particle';
+                p.style.cssText = [
+                    'left:' + Math.random() * 100 + 'vw',
+                    'width:' + (Math.random() * 2 + 1) + 'px',
+                    'height:' + (Math.random() * 2 + 1) + 'px',
+                    'animation-duration:' + (Math.random() * 12 + 10) + 's',
+                    'animation-delay:' + (Math.random() * 8) + 's'
+                ].join(';');
+                container.appendChild(p);
+            }
+        })();
+
+        /* ── CONTAGEM ANIMADA DOS NÚMEROS ── */
+        function animateCount(el) {
+            var raw = el.textContent; // ex: "34,6K"
+            var target = parseFloat(raw.replace(',', '.')) * 1000;
+            var duration = 1200;
+            var start = null;
+            function format(n) {
+                return (n / 1000).toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + 'K';
+            }
+            function step(ts) {
+                if (!start) start = ts;
+                var progress = Math.min((ts - start) / duration, 1);
+                var ease = 1 - Math.pow(1 - progress, 3);
+                el.textContent = format(target * ease);
+                if (progress < 1) requestAnimationFrame(step);
+                else el.textContent = format(target);
+            }
+            requestAnimationFrame(step);
+        }
+
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(e) {
+                if (e.isIntersecting) {
+                    animateCount(e.target);
+                    observer.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.proof-number').forEach(function(el) {
+            observer.observe(el);
+        });
+
+        /* ── MODAL ── */
+        function openModal() {
+            var overlay = document.getElementById('modal-overlay');
+            overlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            var overlay = document.getElementById('modal-overlay');
+            var sheet = overlay.querySelector('.modal-sheet');
+            sheet.style.transform = 'translateY(100%)';
+            setTimeout(function() {
+                overlay.classList.remove('open');
+                sheet.style.transform = '';
+                document.body.style.overflow = '';
+            }, 300);
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+</body>
+</html>
