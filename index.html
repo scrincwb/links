@@ -765,21 +765,21 @@
         <!-- PROVA SOCIAL -->
         <p class="reach-line">
             <span class="reach-dot"></span>
-            <strong>+140 mil seguidores</strong> somando todas as redes
+            <strong id="reach-total">+164 mil seguidores</strong> somando todas as redes
         </p>
         <div class="proof-bar">
             <div class="proof-item">
-                <div class="proof-number" data-target="47100" data-suffix="K">47,1K</div>
+                <div class="proof-number" data-network="tiktok" data-target="50200" data-suffix="K">50,2K</div>
                 <div class="proof-platform">TikTok</div>
             </div>
             <div class="proof-divider"></div>
             <div class="proof-item">
-                <div class="proof-number" data-target="79300" data-suffix="K">79,3K</div>
+                <div class="proof-number" data-network="instagram" data-target="99500" data-suffix="K">99,5K</div>
                 <div class="proof-platform">Instagram</div>
             </div>
             <div class="proof-divider"></div>
             <div class="proof-item">
-                <div class="proof-number" data-target="14100" data-suffix="K">14,1K</div>
+                <div class="proof-number" data-network="youtube" data-target="14600" data-suffix="K">14,6K</div>
                 <div class="proof-platform">YouTube</div>
             </div>
         </div>
@@ -1038,9 +1038,41 @@
             });
         }, { threshold: 0.5 });
 
-        document.querySelectorAll('.proof-number').forEach(function(el) {
-            observer.observe(el);
-        });
+        /* ── NÚMEROS AO VIVO ──
+           stats.json é atualizado 1x por semana por uma rotina automática
+           (Windsor.ai → GitHub). Se falhar, ficam os números fixos acima. */
+        var STATS_URL = 'https://scrincwb.github.io/links/stats.json';
+        function fmtK(n) {
+            return (n / 1000).toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + 'K';
+        }
+        function applyStats(s) {
+            var total = 0;
+            document.querySelectorAll('.proof-number[data-network]').forEach(function(el) {
+                var n = s[el.getAttribute('data-network')];
+                if (typeof n === 'number' && n > 0) {
+                    el.textContent = fmtK(n);
+                    total += n;
+                }
+            });
+            var t = document.getElementById('reach-total');
+            if (t && total > 0) t.textContent = '+' + Math.floor(total / 1000) + ' mil seguidores';
+        }
+        function startCounters() {
+            document.querySelectorAll('.proof-number').forEach(function(el) {
+                observer.observe(el);
+            });
+        }
+        (function() {
+            var started = false;
+            function go() { if (!started) { started = true; startCounters(); } }
+            setTimeout(go, 800); // não segura a animação se a rede estiver lenta
+            try {
+                fetch(STATS_URL, { cache: 'no-cache' })
+                    .then(function(r) { return r.ok ? r.json() : null; })
+                    .then(function(s) { if (s) applyStats(s); go(); })
+                    .catch(go);
+            } catch (e) { go(); }
+        })();
 
         /* ── MODAL ── */
         function openModal() {
