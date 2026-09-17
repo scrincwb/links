@@ -26,7 +26,8 @@ jobs:
 
       - name: Sem senha do FTP ainda — deploy pulado
         if: env.TEM_FTP != 'true'
-        run: echo "::warning::Segredo FTP_PASSWORD não configurado. Rode: gh secret set FTP_PASSWORD --repo scrincwb/links"
+        run: |
+          echo "::warning::Segredo FTP_PASSWORD não configurado. Rode: gh secret set FTP_PASSWORD --repo scrincwb/links"
 
       - name: Enviar arquivos por FTP
         if: env.TEM_FTP == 'true'
