@@ -1,0 +1,48 @@
+name: Deploy da página /links para Alphamídia (FTP)
+
+# Todo push na main (inclusive o da rotina semanal de seguidores) publica
+# index.html + stats.json em www.diretamentedafronteira.com.br/links/.
+# Mesma conta FTP do repo site-fronteira (aponta para public_html); aqui o
+# destino é a subpasta links/. Só mexe nos arquivos que ele próprio enviou.
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      TEM_FTP: ${{ secrets.FTP_PASSWORD != '' }}
+    steps:
+      - name: Baixar o código
+        uses: actions/checkout@v4
+
+      - name: Conferir antes de enviar
+        run: |
+          grep -q '</html>' index.html || { echo "::error::index.html truncado"; exit 1; }
+          python3 -c "import json;d=json.load(open('stats.json'));assert all(d[k]>0 for k in ('tiktok','instagram','youtube'))"
+          echo "Tudo certo."
+
+      - name: Sem senha do FTP ainda — deploy pulado
+        if: env.TEM_FTP != 'true'
+        run: echo "::warning::Segredo FTP_PASSWORD não configurado. Rode: gh secret set FTP_PASSWORD --repo scrincwb/links"
+
+      - name: Enviar arquivos por FTP
+        if: env.TEM_FTP == 'true'
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server:   ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          server-dir: ./links/
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/.git*/**
+            .github/**
+            update_stats.py
+            **/*.md
+            **/.DS_Store
