@@ -90,6 +90,8 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     for net in NETWORKS:
         ap.add_argument(f"--{net}", type=int, required=True, help=f"seguidores atuais no {net}")
+    ap.add_argument("--views", type=int, default=0, help="views nos últimos 30 dias (IG+TikTok+YouTube) — opcional, vai só para o stats.json")
+    ap.add_argument("--alcance", type=int, default=0, help="contas únicas alcançadas no Instagram em 90 dias — opcional, vai só para o stats.json")
     ap.add_argument("--force", action="store_true", help="ignora a trava de queda > 20%%")
     ap.add_argument("--dry-run", action="store_true", help="só mostra o que faria")
     args = ap.parse_args()
@@ -104,10 +106,13 @@ def main() -> int:
         return 2
 
     new["total"] = sum(new[net] for net in NETWORKS)
+    # views/alcance (lidos pelo site principal): se não vierem, mantém os anteriores
+    new["views_30d"] = args.views if args.views > 0 else int(prev.get("views_30d") or 0)
+    new["reach_90d"] = args.alcance if args.alcance > 0 else int(prev.get("reach_90d") or 0)
     new["updated"] = date.today().isoformat()
     new["source"] = "windsor.ai"
 
-    if all(prev.get(net) == new[net] for net in NETWORKS):
+    if all(prev.get(net) == new[net] for net in NETWORKS) and prev.get("views_30d") == new["views_30d"] and prev.get("reach_90d") == new["reach_90d"]:
         print("Sem mudança — números iguais aos de", prev.get("updated", "?"))
         return 3
 
@@ -121,6 +126,10 @@ def main() -> int:
         delta = f" ({new[net] - p:+d})" if isinstance(p, int) else ""
         print(f"  {net:<10} {br(new[net]):>8}  → {fmt_k(new[net])}{delta}")
     print(f"  {'total':<10} {br(new['total']):>8}  → +{new['total'] // 1000} mil")
+    if new["views_30d"]:
+        print(f"  {'views 30d':<10} {br(new['views_30d']):>8}")
+    if new["reach_90d"]:
+        print(f"  {'alcance90d':<10} {br(new['reach_90d']):>8}")
 
     if args.dry_run:
         print("(dry-run: nada gravado)")
