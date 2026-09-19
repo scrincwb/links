@@ -338,6 +338,26 @@
             height: 1px; background: var(--border-card);
         }
 
+        /* ── SORTEIO DA MOTO (temporário — remover depois de 26/09) ── */
+        .cta-sorteio {
+            display: flex; align-items: center; gap: 14px;
+            text-decoration: none;
+            padding: 16px 18px;
+            background: linear-gradient(135deg, #C0272D 0%, #8E1B20 100%);
+            border: 1px solid rgba(232,179,58,.55);
+            border-radius: var(--radius);
+            margin-bottom: 18px;
+            box-shadow: 0 8px 24px rgba(192,39,45,.35);
+            transition: transform 0.2s ease;
+            animation: fadeUp 0.5s ease 0.55s both;
+            -webkit-animation: fadeUp 0.5s ease 0.55s both;
+        }
+        .cta-sorteio:active { transform: scale(0.98); }
+        .cta-sorteio .ico { font-size: 34px; line-height: 1; filter: drop-shadow(0 4px 8px rgba(0,0,0,.4)); }
+        .cta-sorteio .tag { font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #FFD770; }
+        .cta-sorteio .tit { font-size: 19px; font-weight: 800; color: #fff; line-height: 1.15; margin-top: 2px; }
+        .cta-sorteio .sub { font-size: 12px; color: rgba(255,255,255,.85); margin-top: 3px; }
+
         /* ── CTA PRINCIPAL ── */
         .cta-primary {
             display: block; position: relative;
@@ -784,6 +804,16 @@
             </div>
         </div>
 
+        <!-- SORTEIO DA MOTO (temporário — remover depois de 26/09) -->
+        <a href="https://painel.diretamentedafronteira.com.br/sorteio/?ref=bio" class="cta-sorteio">
+            <div class="ico">🏍️</div>
+            <div>
+                <div class="tag">Sorteio 100K · até 25/09</div>
+                <div class="tit">Pega seu número da sorte</div>
+                <div class="sub">Moto elétrica 500W · sorteio ao vivo sáb 26/09, 11h</div>
+            </div>
+        </a>
+
         <!-- CTA PRINCIPAL -->
         <p class="section-label">Assessoria</p>
         <a href="https://wa.me/595981459106?text=Ol%C3%A1%20Diego!%20Vim%20pelo%20link%20e%20quero%20informa%C3%A7%C3%B5es%20sobre%20imigra%C3%A7%C3%A3o%20para%20o%20Paraguai." target="_blank" rel="noopener" class="cta-primary">
@@ -816,6 +846,21 @@
             </div>
 
             <!-- YouTube -->
+            <a href="https://fronteiraplay.com/?utm_source=bio&utm_medium=links&utm_campaign=guias" target="_blank" rel="noopener" class="link-card">
+                <div class="link-icon">
+                    <svg viewBox="0 0 24 24" fill="#C9A84C">
+                        <path d="M4 3.5A1.5 1.5 0 015.5 2H12v18H5.5A1.5 1.5 0 014 18.5v-15zM13 2h5.5A1.5 1.5 0 0120 3.5v15a1.5 1.5 0 01-1.5 1.5H13V2zM6 22a2 2 0 01-2-2h16a2 2 0 01-2 2H6z"/>
+                    </svg>
+                </div>
+                <div class="link-text">
+                    <div class="link-title">Guias do Paraguai — 11 guias em PDF</div>
+                    <div class="link-desc">Residência, empresa, carro, imóvel, impostos. Coleção completa R$ 147</div>
+                </div>
+                <svg class="link-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+
             <a href="https://www.youtube.com/@diretamentedafronteira" target="_blank" rel="noopener" class="link-card">
                 <div class="link-icon">
                     <svg viewBox="0 0 24 24" fill="#C9A84C">
