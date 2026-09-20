@@ -1171,5 +1171,31 @@
             if (e.key === 'Escape') closeModal();
         });
     </script>
+    <!-- Tráfego da casa: visita + clique em cada link vão para o painel do CRM (Admin › Tráfego).
+         Sem cookie, sem Google; sendBeacon não atrasa a navegação. -->
+    <script>
+    (function () {
+        var U = 'https://painel.diretamentedafronteira.com.br/api/trafego.php';
+        var q = new URLSearchParams(location.search);
+        function nome(a) {
+            var t = a.getAttribute('data-nome') || a.getAttribute('aria-label') || '';
+            if (!t) { var el = a.querySelector('.link-title, .tit, .cta-title, .btn'); t = (el ? el.textContent : a.textContent) || ''; }
+            return t.replace(/\s+/g, ' ').trim().slice(0, 60);
+        }
+        function env(e, alvo) {
+            try {
+                var d = new URLSearchParams({ s: 'bio', e: e, p: location.pathname, a: alvo || '', r: document.referrer || '',
+                    us: q.get('utm_source') || '', um: q.get('utm_medium') || '', uc: q.get('utm_campaign') || '' });
+                if (navigator.sendBeacon) navigator.sendBeacon(U, d); else (new Image()).src = U + '?' + d.toString() + '&_=' + Date.now();
+            } catch (err) {}
+        }
+        env('visita');
+        document.addEventListener('click', function (ev) {
+            var a = ev.target && ev.target.closest ? ev.target.closest('a[href]') : null;
+            if (!a || !/^https?:|^mailto:|^tel:/.test(a.href)) return;
+            env('clique', nome(a) + ' | ' + a.href.slice(0, 120));
+        }, true);
+    })();
+    </script>
 </body>
 </html>
