@@ -358,6 +358,31 @@
         .cta-sorteio .tit { font-size: 19px; font-weight: 800; color: #fff; line-height: 1.15; margin-top: 2px; }
         .cta-sorteio .sub { font-size: 12px; color: rgba(255,255,255,.85); margin-top: 3px; }
 
+        /* ── GUIAS DO PARAGUAI (venda) ── */
+        .cta-guias {
+            display: flex; align-items: center; gap: 14px;
+            text-decoration: none;
+            padding: 14px 16px 14px 14px;
+            background: linear-gradient(135deg, #0E182B 0%, #14213A 100%);
+            border: 1px solid rgba(232,179,58,.55);
+            border-radius: var(--radius);
+            margin-bottom: 18px;
+            box-shadow: 0 8px 24px rgba(0,0,0,.35);
+            transition: transform 0.2s ease;
+            animation: fadeUp 0.5s ease 0.6s both;
+            -webkit-animation: fadeUp 0.5s ease 0.6s both;
+        }
+        .cta-guias:active { transform: scale(0.98); }
+        .cta-guias img { width: 58px; height: 77px; border-radius: 8px; object-fit: cover; box-shadow: 0 6px 16px rgba(0,0,0,.5); flex-shrink: 0; }
+        .cta-guias .tag { font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #FFD770; }
+        .cta-guias .tit { font-size: 17px; font-weight: 800; color: #fff; line-height: 1.15; margin-top: 2px; }
+        .cta-guias .sub { font-size: 12px; color: rgba(255,255,255,.82); margin-top: 3px; }
+        .cta-guias .preco { margin-top: 6px; font-size: 13px; color: #fff; }
+        .cta-guias .preco s { color: rgba(255,255,255,.5); margin-right: 6px; }
+        .cta-guias .preco b { color: #FFD770; font-size: 16px; }
+        .cta-guias .btn { margin-left: auto; flex-shrink: 0; font-size: 12px; font-weight: 800; color: #0A1220; background: linear-gradient(135deg, #F6DA8A, #E9B949 55%, #C9952B); padding: 9px 12px; border-radius: 999px; white-space: nowrap; }
+        @media (max-width: 380px) { .cta-guias .btn { display: none; } }
+
         /* ── CTA PRINCIPAL ── */
         .cta-primary {
             display: block; position: relative;
@@ -816,6 +841,17 @@
 
         <!-- CTA PRINCIPAL -->
         <p class="section-label">Assessoria</p>
+        <a href="https://fronteiraplay.com/colecao.php?utm_source=bio&utm_medium=destaque&utm_campaign=guias" target="_blank" rel="noopener" class="cta-guias">
+            <img src="capa-colecao.jpg" width="58" height="77" alt="Coleção Paraguai na Prática">
+            <div>
+                <div class="tag">Novo · 11 guias em PDF</div>
+                <div class="tit">Guias do Paraguai</div>
+                <div class="sub">Residência, empresa, carro, imóvel, impostos. Por quem vive na fronteira.</div>
+                <div class="preco"><s>R$ 407</s><b>R$ 147</b> · PIX ou 12x</div>
+            </div>
+            <span class="btn">Ver guias →</span>
+        </a>
+
         <a href="https://wa.me/595981459106?text=Ol%C3%A1%20Diego!%20Vim%20pelo%20link%20e%20quero%20informa%C3%A7%C3%B5es%20sobre%20imigra%C3%A7%C3%A3o%20para%20o%20Paraguai." target="_blank" rel="noopener" class="cta-primary">
             <div class="cta-tag">Especialista em imigração</div>
             <div class="cta-title">Quero Imigrar<br>para o Paraguai</div>
