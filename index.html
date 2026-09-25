@@ -11,7 +11,7 @@
     <title>Diego | Diretamente da Fronteira</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@500;600;700;800&family=Pinyon+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
     <link rel="preload" as="image" href="diego-capa.jpg">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -98,6 +98,7 @@
             font-family: var(--script);
             color: rgba(184,137,43,0.13);
             white-space: nowrap; line-height: 1;
+            display: none; /* cursiva de fundo atrapalhava a leitura */
         }
 
         /* ── CAPA ── */
@@ -226,7 +227,7 @@
         .f-media .spark { top: 18px; right: 10px; z-index: 6; }
         .f-body { position: relative; text-align: center; }
         .f-title { font-family: var(--serif); font-weight: 400; font-size: 29px; line-height: 1.02; }
-        .f-sign { display: block; font-family: var(--script); font-size: 30px; line-height: 0.9; color: #2A3040; margin-top: -2px; }
+        .f-sign { display: block; font-family: var(--sans); font-size: 17px; font-weight: 700; line-height: 1.2; color: #2A3040; margin-top: 4px; }
         .f-card { margin-top: 12px; padding: 14px 12px; font-size: 13.5px; line-height: 1.5; color: #2A3040; }
         .f-card small { display: block; margin-top: 6px; font-size: 12px; color: var(--muted); }
         .f-body .btn-gold { margin-top: 12px; }
@@ -246,7 +247,7 @@
 
         @media (max-width: 374px) {
             .f-title { font-size: 25px; }
-            .f-sign { font-size: 26px; }
+            .f-sign { font-size: 16px; }
             .f-card { font-size: 12.5px; padding: 12px 10px; }
             .btn-gold { font-size: 12px; padding: 0 12px; }
             .f-media { height: 220px; }
@@ -255,7 +256,7 @@
         /* ── MAIS ── */
         .section-title { margin: 52px 0 14px; text-align: center; }
         .section-title span { font-family: var(--serif); font-size: 26px; }
-        .section-title i { display: block; font-style: normal; font-family: var(--script); font-size: 26px; margin-top: -4px; color: #2A3040; }
+        .section-title i { display: block; font-style: normal; font-family: var(--sans); font-size: 16px; font-weight: 700; margin-top: 4px; color: #2A3040; }
         .list { display: flex; flex-direction: column; gap: 12px; }
         .list-note { text-align: center; font-size: 12px; color: var(--muted); margin-top: -2px; }
         .list-note strong { color: #8A6214; }
@@ -393,7 +394,7 @@
 
         /* ── REDES EM DESTAQUE ── */
         .nets-wrap .section-title { margin-top: 20px; margin-bottom: 10px; }
-        .nets-wrap .section-title i { font-size: 22px; }
+        .nets-wrap .section-title i { font-size: 15px; }
         .nets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
         .net {
             display: flex; flex-direction: column; align-items: center;
