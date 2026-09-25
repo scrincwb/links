@@ -433,6 +433,11 @@
         .row-icon { border-radius: 10px; background: #E8B33A; }
         .f-body .btn-gold { width: 100%; max-width: 100%; padding: 0 10px; font-size: 12.5px; letter-spacing: 0.05em; }
         .f-body { min-width: 0; }
+
+        /* Nada pode vazar para o lado (o navegador do Instagram no iPhone ignora overflow-x no body) */
+        html, body { overflow-x: hidden; max-width: 100%; }
+        .page { overflow: hidden; }
+        .hero, .feature, .f-media { max-width: 100%; }
     </style>
 </head>
 <body>
