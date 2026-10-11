@@ -463,6 +463,24 @@
         }
         .guide-link em { flex-shrink: 0; font-style: normal; font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #8A6214; }
         .guide-link:active { transform: scale(0.98); }
+
+        /* ── PRIMEIRA DOBRA COMPACTA (iPhone 390x844): botões da assessoria visíveis sem rolar ── */
+        .hero-photo { height: min(66vw, 290px); }
+        .hero-info { margin-top: -70px; }
+        .hero-logo { display: none; } /* a logo já fica no menu fixo; na capa cobria o rosto */
+        .hero-name { font-size: 54px; margin-top: 2px; }
+        .hero-tagline { margin-top: 4px; font-size: 14.5px; line-height: 1.42; max-width: 340px; }
+        .reach { margin-top: 6px; font-size: 12.5px; }
+        #assessoria { margin-top: 16px; }
+        #assessoria .f-media { height: 150px; }
+        #assessoria .f-title { font-size: 26px; }
+        #assessoria .f-sign { font-size: 15px; margin-top: 2px; }
+        #assessoria .f-card { margin-top: 8px; padding: 10px 10px; font-size: 13px; line-height: 1.4; }
+        .top-actions { margin-top: 4px !important; margin-bottom: 4px !important; gap: 8px; }
+        .top-actions .btn-gold { height: 52px; }
+        .sec-tight { margin-top: 30px; }
+        .guide-paid { margin-top: 10px; }
+        .guide-paid .guide-link { background: #FFFDF7; }
     </style>
 </head>
 <body>
@@ -496,7 +514,7 @@
         <div class="hero-info">
             <img class="hero-logo" src="logo-ddf.webp" width="280" height="280" alt="Diretamente da Fronteira">
             <h1 class="hero-name"><span class="gold-text">Diego</span><span class="spark" aria-hidden="true"><svg><use href="#star"/></svg></span></h1>
-            <p class="hero-tagline">Brasileiro morando em Ciudad del Este. Residência, empresa e impostos no Paraguai, do jeito certo.</p>
+            <p class="hero-tagline">Brasileiro morando em Ciudad del Este. Residência, empresa e impostos, do jeito certo.</p>
             <p class="reach"><span class="live" aria-hidden="true"></span><strong id="reach-total">+200 mil seguidores</strong> somando as redes</p>
         </div>
     </header>
@@ -520,6 +538,19 @@
         <a id="cta-principal" class="btn-gold btn-ghost" data-id="assessoria-whatsapp" data-nome="Assessoria WhatsApp" href="https://wa.me/595981459106?text=Ol%C3%A1%2C%20Diego!%20Vim%20pelo%20seu%20link.%20Quero%20montar%20minha%20base%20no%20Paraguai%20(resid%C3%AAncia%20%2F%20empresa%20%2F%20impostos).%20Meu%20caso%20%C3%A9%3A%20" target="_blank" rel="noopener">
             <svg aria-hidden="true"><use href="#wa"/></svg> Contar meu caso
         </a>
+    </div>
+
+    <!-- GUIAS GRÁTIS -->
+    <h2 class="section-title reveal sec-tight" id="gratis" data-menu="Grátis"><span class="gold-text">Guias grátis</span><i aria-hidden="true">leia agora</i></h2>
+    <div class="guide-list">
+        <a class="guide-link reveal" data-id="gratis-biometria" data-nome="Guia grátis: biometria da mão" href="https://diretamentedafronteira.com.br/ebookmao/" target="_blank" rel="noopener"><span>A Receita vai ler a sua mão: a biometria na Ponte da Amizade</span><em>Grátis</em></a>
+        <a class="guide-link reveal" data-id="gratis-iphone" data-nome="Guia grátis: iPhone no Paraguai" href="https://diretamentedafronteira.com.br/ebookiphone/" target="_blank" rel="noopener"><span>iPhone no Paraguai: novo, usado ou recondicionado?</span><em>Grátis</em></a>
+        <a class="guide-link reveal" data-id="gratis-ponte" data-nome="Guia grátis: Fronteira Inteligente" href="https://diretamentedafronteira.com.br/ebookponte/" target="_blank" rel="noopener"><span>Fronteira Inteligente: como atravessar a Ponte da Amizade em 2026</span><em>Grátis</em></a>
+    </div>
+
+    <!-- GUIA PAGO (R$ 19,90): fora da lista de grátis de propósito -->
+    <div class="guide-list guide-paid">
+        <a class="guide-link reveal" data-id="guia-morar-pago" data-nome="Guia Morar no Paraguai (R$ 19,90)" href="https://diretamentedafronteira.com.br/guia-paraguai/" target="_blank" rel="noopener"><span>Guia Morar no Paraguai · R$ 19,90</span><em>Ver guia</em></a>
     </div>
 
     <!-- REDES EM DESTAQUE (números ao vivo via stats.json - não remover data-network nem #reach-total) -->
@@ -571,15 +602,6 @@
         </div>
     </section>
     <script>try{if(Date.now()>Date.parse('2026-10-17T12:00:00-03:00')){var e=document.getElementById('sorteio');e&&e.remove();}}catch(e){}</script>
-
-    <!-- GUIAS GRÁTIS -->
-    <h2 class="section-title reveal" id="gratis" data-menu="Grátis"><span class="gold-text">Guias grátis</span><i aria-hidden="true">leia agora</i></h2>
-    <div class="guide-list">
-        <a class="guide-link reveal" data-id="gratis-biometria" data-nome="Guia grátis: biometria da mão" href="https://diretamentedafronteira.com.br/ebookmao/" target="_blank" rel="noopener"><span>A Receita vai ler a sua mão: a biometria na Ponte da Amizade</span><em>Grátis</em></a>
-        <a class="guide-link reveal" data-id="gratis-iphone" data-nome="Guia grátis: iPhone no Paraguai" href="https://diretamentedafronteira.com.br/ebookiphone/" target="_blank" rel="noopener"><span>iPhone no Paraguai: novo, usado ou recondicionado?</span><em>Grátis</em></a>
-        <a class="guide-link reveal" data-id="gratis-ponte" data-nome="Guia grátis: Fronteira Inteligente" href="https://diretamentedafronteira.com.br/ebookponte/" target="_blank" rel="noopener"><span>Fronteira Inteligente: como atravessar a Ponte da Amizade em 2026</span><em>Grátis</em></a>
-        <a class="guide-link reveal" data-id="gratis-morar" data-nome="Guia grátis: Morar no Paraguai 2026" href="https://diretamentedafronteira.com.br/guia-paraguai/" target="_blank" rel="noopener"><span>Morar no Paraguai: o guia de quem chega sem cair em cilada</span><em>Grátis</em></a>
-    </div>
 
     <!-- GUIAS DO PARAGUAI (cupom DESCONTO até 04/10/2026 - depois o JS volta para o preço cheio sozinho) -->
     <section class="feature rev offer reveal" id="offer" data-menu="Guias">
