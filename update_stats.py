@@ -9,7 +9,12 @@ O que faz:
      protege contra a API devolver 0 ou lixo). Use --force para ignorar.
   2. Reescreve stats.json (lido pela página em tempo real).
   3. Atualiza os números fixos de fallback dentro do index.html
-     (texto "NN,NK", data-target e o total "+NNN mil seguidores").
+     (texto "+NN mil", data-target e o total "+NNN mil seguidores").
+
+Formato (igual ao JS da página): 2 algarismos significativos, sempre para
+baixo, "+N mil" / "+N milhões". REGRA ABSOLUTA: nunca exibir 13. Depois de
+formatar, se os dígitos tiverem "13", desce uma unidade do último algarismo
+exibido até sumir (136.282 → 130 → "+120 mil"; 213.554 → "+210 mil").
 
 Sai com código 0 se atualizou, 3 se nada mudou, 1/2 em erro.
 Não faz git — quem chama decide commitar.
@@ -28,13 +33,45 @@ NETWORKS = ("tiktok", "instagram", "youtube")
 MIN_RATIO = 0.80  # queda maior que 20% numa semana = provavelmente erro de API
 
 
-def fmt_k(n: int) -> str:
-    """50208 -> '50,2K' (vírgula pt-BR, 1 casa decimal)."""
-    return f"{n / 1000:.1f}K".replace(".", ",")
+def tem_13(s: str) -> bool:
+    return "13" in re.sub(r"\D", "", s)
 
 
-def round_100(n: int) -> int:
-    return int(round(n / 100.0)) * 100
+def _dec(v: float) -> str:
+    """12.0 -> '12' · 3.7 -> '3,7' (vírgula pt-BR)."""
+    t = f"{round(v, 1):.1f}"
+    if t.endswith(".0"):
+        t = t[:-2]
+    return t.replace(".", ",")
+
+
+def fmt_seg(n: int) -> str:
+    """Número exibido na página, sempre para baixo e sem 13.
+
+    213554 -> '+210 mil' · 136282 -> '+120 mil' · 62272 -> '+62 mil'
+    15000 -> '+15 mil' · 8153459 -> '+8 milhões' · 3702793 -> '+3,7 milhões'
+    """
+    n = int(n)
+    if n >= 1_000_000:
+        v, step = (n // 100_000) / 10, 0.1
+        if v >= 5:
+            v, step = float(int(v)), 1.0
+        unit = lambda x: " milhão" if x < 2 else " milhões"
+    elif n >= 1000:
+        k = n / 1000
+        if k >= 100:
+            v, step = float(int(k // 10) * 10), 10.0
+        elif k >= 10:
+            v, step = float(int(k)), 1.0
+        else:
+            v, step = int(k * 10) / 10, 0.1
+        unit = lambda x: " mil"
+    else:
+        v, step = float(n), 1.0
+        unit = lambda x: ""
+    while v > 0 and tem_13(_dec(v)):
+        v = round(v - step, 1)
+    return f"+{_dec(v)}{unit(v)}"
 
 
 def load_prev() -> dict:
@@ -66,19 +103,18 @@ def patch_html(html: str, new: dict) -> str:
     for net in NETWORKS:
         n = new[net]
         pattern = re.compile(
-            r'(<div class="proof-number" data-network="' + net + r'" data-target=")'
-            r'\d+("\s+data-suffix="K">)[^<]*(</div>)'
+            r'(<span class="proof-number[^"]*" data-network="' + net + r'" data-target=")'
+            r'\d+(">)[^<]*(</span>)'
         )
         html, count = pattern.subn(
-            lambda m: f"{m.group(1)}{round_100(n)}{m.group(2)}{fmt_k(n)}{m.group(3)}", html
+            lambda m: f"{m.group(1)}{n}{m.group(2)}{fmt_seg(n)}{m.group(3)}", html
         )
         if count != 1:
             raise RuntimeError(f"index.html: esperava 1 bloco para {net}, achei {count}")
 
-    total_k = new["total"] // 1000
     html, count = re.subn(
-        r'(<strong id="reach-total">)[^<]*(</strong>)',
-        lambda m: f"{m.group(1)}+{total_k} mil seguidores{m.group(2)}",
+        r'(<strong id="reach-total"[^>]*>)[^<]*(</strong>)',
+        lambda m: f"{m.group(1)}{fmt_seg(new['total'])} seguidores{m.group(2)}",
         html,
     )
     if count != 1:
@@ -124,8 +160,8 @@ def main() -> int:
     for net in NETWORKS:
         p = prev.get(net)
         delta = f" ({new[net] - p:+d})" if isinstance(p, int) else ""
-        print(f"  {net:<10} {br(new[net]):>8}  → {fmt_k(new[net])}{delta}")
-    print(f"  {'total':<10} {br(new['total']):>8}  → +{new['total'] // 1000} mil")
+        print(f"  {net:<10} {br(new[net]):>8}  → {fmt_seg(new[net])}{delta}")
+    print(f"  {'total':<10} {br(new['total']):>8}  → {fmt_seg(new['total'])}")
     if new["views_30d"]:
         print(f"  {'views 30d':<10} {br(new['views_30d']):>8}")
     if new["reach_90d"]:

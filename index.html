@@ -11,320 +11,547 @@
     <meta name="twitter:title" content="Diego | Diretamente da Fronteira">
     <meta name="twitter:description" content="Imigração, compras e rotina no Paraguai, contadas por quem mora aqui.">
     <meta name="twitter:image" content="https://diretamentedafronteira.com.br/links/diego-capa.jpg">
-    <meta name="theme-color" content="#FAF6EE">
+    <meta name="theme-color" content="#0B1630">
     <meta property="og:title" content="Diego | Diretamente da Fronteira">
     <meta property="og:image" content="https://diretamentedafronteira.com.br/links/diego-capa.jpg">
     <meta property="og:description" content="Imigração, compras e rotina no Paraguai, contadas por quem mora aqui.">
     <title>Diego | Diretamente da Fronteira</title>
+    <link rel="icon" type="image/webp" href="logo-ddf.webp">
     <!-- GA4: mesma tag (GT-KT9N4QRZ) do site principal -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=GT-KT9N4QRZ"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','GT-KT9N4QRZ');</script>
+    <!-- blocos temporários: some sozinho depois da data (Mutirão, Sorteio) -->
+    <script>window.__expira=function(sel,quando){try{if(Date.now()>Date.parse(quando)){[].forEach.call(document.querySelectorAll(sel),function(e){e.parentNode&&e.parentNode.removeChild(e);});}}catch(e){}};</script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="preload" as="image" href="diego-capa.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="diego-busto.webp">
+    <link rel="preload" as="image" href="bg-cde-noite.webp">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        i, em, cite, address, dfn, var { font-style: normal; } /* nada em itálico */
 
         :root {
-            --bg: #FAF6EE;
-            --text: #151A26;
-            --muted: #5A6272;
-            --gold-1: #FFF3C4;
-            --gold-2: #E8C66A;
-            --gold-3: #B8892B;
-            --gold: #E6C35C;
-            --gold-text: linear-gradient(180deg, #D7AF52 0%, #B8892B 42%, #8A6214 78%, #BF953A 100%);
-            --gold-fill: linear-gradient(180deg, #FFF1B8 0%, #EBCB68 30%, #BF9030 62%, #E9CB6E 100%);
-            --red: #FF5A60;
-            --green: #25D366;
-            --serif: 'DM Serif Display', Georgia, 'Times New Roman', serif;
+            --bg: #0B1630;
+            --card: #13234A;
+            --card-2: #1A2D5A;
+            --gold: #D4A44C;
+            --gold-hi: #E8C77A;
+            --gold-lo: #C29340;
+            --gold-soft: #F4DFA6;
+            --ink: #0B1630;
+            --safira: #2458B8;
+            --text: #F5F1E8;
+            --soft: #D5DCEB;
+            --line: rgba(232, 199, 122, 0.30);
+            --glass: linear-gradient(160deg, rgba(31, 52, 102, 0.78) 0%, rgba(19, 35, 74, 0.70) 100%);
+            --gold-fill: linear-gradient(135deg, #F0D58F 0%, #E8C77A 30%, #D4A44C 62%, #C29340 100%);
+            --gold-text: linear-gradient(180deg, #FBEBC0 0%, #EDCF86 34%, #D4A44C 66%, #B98A35 100%);
+            --display: 'Anton', 'Oswald', Impact, 'Arial Narrow', sans-serif;
             --sans: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            --script: 'Pinyon Script', 'Snell Roundhand', cursive;
+            --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
         }
 
-        html { background: var(--bg); }
+        html { background: var(--bg); scroll-behavior: smooth; scroll-padding-top: 74px; }
         body {
-            background: var(--bg);
+            background:
+                radial-gradient(900px 600px at 50% -10%, rgba(36, 88, 184, 0.22), transparent 70%),
+                var(--bg);
             color: var(--text);
             font-family: var(--sans);
             font-weight: 500;
+            font-size: 16px;
             min-height: 100vh;
             min-height: 100dvh;
-            overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -webkit-tap-highlight-color: transparent;
         }
+        /* textura de grão por cima de tudo (bem sutil) */
+        body::after {
+            content: ''; position: fixed; inset: 0; z-index: 90; pointer-events: none;
+            opacity: 0.05;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+        }
         a { color: inherit; text-decoration: none; }
         button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
-        :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 10px; }
+        img { display: block; }
+        :focus-visible { outline: 2px solid var(--gold-hi); outline-offset: 3px; border-radius: 12px; }
 
+        /* Nada pode vazar para o lado (o navegador do Instagram no iPhone ignora overflow-x no body) */
+        html, body { overflow-x: hidden; }
         .page {
             position: relative;
-            max-width: 460px;
+            max-width: 480px;
             margin: 0 auto;
-            padding: 0 16px calc(40px + env(safe-area-inset-bottom));
+            padding: 0 16px calc(36px + env(safe-area-inset-bottom));
+            overflow: hidden;
+            /* luzes de ambiente ao longo da página */
+            background:
+                radial-gradient(420px 380px at 105% 980px, rgba(36, 88, 184, 0.30), transparent 70%),
+                radial-gradient(420px 380px at -10% 1550px, rgba(212, 164, 76, 0.13), transparent 70%),
+                radial-gradient(460px 400px at 110% 2350px, rgba(36, 88, 184, 0.26), transparent 70%),
+                radial-gradient(420px 400px at -10% 3150px, rgba(212, 164, 76, 0.12), transparent 70%),
+                radial-gradient(460px 420px at 100% 3900px, rgba(36, 88, 184, 0.24), transparent 70%);
         }
 
-        @keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
-        @keyframes glowIn { from { opacity: 0; transform: scale(0.85); } to { opacity: 1; transform: none; } }
-        @keyframes twinkle { 0%, 100% { opacity: 0.35; transform: scale(0.7) rotate(0deg); } 50% { opacity: 1; transform: scale(1) rotate(45deg); } }
-        @keyframes sheen { 0% { transform: translateX(-120%) skewX(-20deg); } 60%, 100% { transform: translateX(260%) skewX(-20deg); } }
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after { animation: none !important; transition: none !important; }
-        }
+        @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+        @keyframes heroIn { from { opacity: 0; transform: translateY(24px) scale(1.04); } to { opacity: 1; transform: none; } }
+        @keyframes bgIn { from { opacity: 0; transform: scale(1.12); } to { opacity: 1; transform: scale(1.02); } }
+        @keyframes glow { 0%, 100% { opacity: 0.85; transform: translate(-50%, -50%) scale(1); } 50% { opacity: 1; transform: translate(-50%, -50%) scale(1.06); } }
+        @keyframes spin { to { transform: translate(-50%, -50%) rotate(360deg); } }
+        @keyframes twinkle { 0%, 100% { opacity: 0.25; transform: scale(0.6) rotate(0deg); } 50% { opacity: 1; transform: scale(1) rotate(45deg); } }
+        @keyframes shimmer { 0% { transform: translateX(-130%) skewX(-20deg); } 38%, 100% { transform: translateX(330%) skewX(-20deg); } }
+        @keyframes live { 70% { box-shadow: 0 0 0 9px rgba(34, 197, 94, 0); } 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); } }
+        @keyframes navIn { from { opacity: 0; transform: translateY(-100%); } to { opacity: 1; transform: none; } }
+        @keyframes nudge { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(4px); } }
 
-        /* ── texto dourado ── */
+        /* ── utilitários ── */
         .gold-text {
             background: var(--gold-text);
             -webkit-background-clip: text; background-clip: text;
             color: transparent;
-            filter: drop-shadow(0 2px 10px rgba(184,137,43,0.18));
+            -webkit-text-fill-color: transparent;
+            padding: 0.14em 0.04em 0; margin-top: -0.14em; /* acentos (Á, Ã) não podem ser cortados */
         }
-
-        /* ── halo dourado atrás das fotos ── */
-        .halo { position: relative; isolation: isolate; }
-        .halo::before {
-            content: '';
-            position: absolute; z-index: -1;
-            left: 50%; top: 40%;
-            width: 112%; aspect-ratio: 1;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(236,200,105,0.70) 0%, rgba(236,200,105,0.38) 30%, rgba(236,200,105,0.12) 52%, transparent 70%);
-            animation: glowIn 1.2s ease both;
-        }
-
-        /* ── brilho (estrelinha) ── */
-        .spark {
-            position: absolute; width: 22px; height: 22px; pointer-events: none;
-            animation: twinkle 3.2s ease-in-out infinite;
-        }
-        .spark svg { width: 100%; height: 100%; display: block; filter: drop-shadow(0 0 6px rgba(212,169,63,0.6)); }
-
-        /* ── assinatura cursiva de fundo ── */
-        .script-bg {
-            position: absolute; pointer-events: none; user-select: none;
-            font-family: var(--script);
-            color: rgba(184,137,43,0.13);
-            white-space: nowrap; line-height: 1;
-            display: none; /* cursiva de fundo atrapalhava a leitura */
-        }
-
-        /* ── CAPA ── */
-        .hero { position: relative; margin: 0 -16px; padding-top: max(18px, env(safe-area-inset-top)); text-align: center; overflow-x: clip; }
-        .hero .script-bg { font-size: 74px; top: 40px; left: -6%; transform: rotate(-10deg); }
-        .hero .script-bg.b { top: 150px; left: 30%; font-size: 64px; }
-        .hero-photo { position: relative; width: 100%; height: min(118vw, 520px); overflow: hidden; }
-        .hero-photo.halo::before { top: 34%; width: 125%; }
-        .hero-photo img {
-            position: absolute; inset: 0;
-            width: 100%; height: 100%;
-            object-fit: cover; object-position: 50% 18%;
-            display: block;
-            animation: heroIn 1.4s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-            -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 55%, rgba(0,0,0,0.55) 76%, transparent 97%);
-                    mask-image: linear-gradient(to bottom, #000 0%, #000 55%, rgba(0,0,0,0.55) 76%, transparent 97%);
-        }
-        @keyframes heroIn { from { opacity: 0; transform: scale(1.06); } to { opacity: 1; transform: none; } }
-        @media (min-width: 461px) {
-            .hero-photo { border-radius: 0 0 0 0; }
-            .hero-photo img {
-                -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 97%), linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%);
-                -webkit-mask-composite: source-in;
-                        mask-image: linear-gradient(to bottom, #000 55%, transparent 97%), linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%);
-                        mask-composite: intersect;
-            }
-        }
-        .hero-info { position: relative; margin-top: -150px; padding: 0 20px; animation: rise 0.9s 0.3s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
-        .hero-brand { font-size: 12px; font-weight: 800; letter-spacing: 0.26em; text-transform: uppercase; color: #9A7426; }
-        .hero-name { position: relative; display: inline-block; font-family: var(--serif); font-weight: 400; font-size: 72px; line-height: 1; margin-top: 4px; }
-        .hero-name .spark { top: 2px; right: -20px; }
-        .hero-tagline { margin: 6px auto 0; max-width: 320px; font-size: 15.5px; line-height: 1.5; color: var(--muted); }
-
-        /* ── cartão preto brilhante ── */
-        .gloss {
+        .glass {
             position: relative;
-            background: linear-gradient(160deg, #FFFFFF 0%, #FDFBF6 55%, #F4EEE1 100%);
-            border: 1px solid rgba(184,137,43,0.22);
+            background: var(--glass);
+            border: 1px solid var(--line);
+            border-radius: 22px;
+            -webkit-backdrop-filter: blur(16px) saturate(1.3); backdrop-filter: blur(16px) saturate(1.3);
+            box-shadow: 0 30px 60px -34px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.09);
+        }
+        /* filete dourado no topo dos cartões de vidro */
+        .glass::before {
+            content: ''; position: absolute; left: 18%; right: 18%; top: -1px; height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(244, 223, 166, 0.95), transparent);
+            pointer-events: none;
+        }
+        .spark { position: absolute; width: 20px; height: 20px; pointer-events: none; animation: twinkle 3.4s ease-in-out infinite; }
+        .spark svg { width: 100%; height: 100%; display: block; filter: drop-shadow(0 0 8px rgba(232, 199, 122, 0.9)); }
+
+        /* ── BOTÕES ── */
+        .btn {
+            position: relative; overflow: hidden;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            width: 100%; min-height: 58px; padding: 0 18px;
             border-radius: 16px;
-            box-shadow: inset 0 1px 0 #FFFFFF, 0 14px 30px -18px rgba(110,80,20,0.45);
+            font-family: var(--sans); font-size: 15px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase;
+            text-align: center; line-height: 1.2;
+            transition: transform 0.14s ease, box-shadow 0.2s ease, background-color 0.2s;
+        }
+        .btn:active { transform: scale(0.97); }
+        .btn svg { width: 20px; height: 20px; flex-shrink: 0; fill: currentColor; }
+        .btn-gold {
+            background: var(--gold-fill);
+            color: var(--ink);
+            box-shadow: 0 16px 34px -14px rgba(212, 164, 76, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.55), inset 0 -2px 0 rgba(0, 0, 0, 0.16);
+        }
+        .btn-gold.shine::after {
+            content: ''; position: absolute; top: 0; bottom: 0; left: 0; width: 34%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.75), transparent);
+            animation: shimmer 4.2s ease-in-out infinite 1.2s;
+        }
+        .btn-line {
+            background: rgba(11, 22, 48, 0.45);
+            border: 1.5px solid rgba(232, 199, 122, 0.75);
+            color: var(--gold-soft);
+            box-shadow: inset 0 0 22px rgba(212, 164, 76, 0.10);
+        }
+        .btn-blue {
+            background: linear-gradient(135deg, #2F6AD0 0%, #2458B8 55%, #1C4796 100%);
+            color: #FFFFFF;
+            box-shadow: 0 16px 30px -14px rgba(36, 88, 184, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+        }
+        .btn .arrow { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+        @media (hover: hover) {
+            .btn-gold:hover { box-shadow: 0 20px 40px -14px rgba(212, 164, 76, 1), inset 0 1px 0 rgba(255, 255, 255, 0.55); }
+            .btn-line:hover { background: rgba(212, 164, 76, 0.12); }
+            .btn:hover .arrow { animation: nudge 0.8s ease-in-out infinite; }
         }
 
-        /* ── NÚMEROS ── */
-        .proof { display: inline-block; margin-top: 18px; padding: 11px 22px; border-radius: 999px; }
-        .proof-total { font-size: 12.5px; color: var(--muted); }
-        .proof-total strong { color: #8A6214; font-weight: 800; }
-        .proof-row { display: flex; justify-content: center; align-items: center; flex-wrap: nowrap; gap: 2px 8px; margin-top: 3px; font-size: 12.5px; color: var(--muted); }
-        .pr-item { white-space: nowrap; }
-        .proof-number { display: inline; color: var(--text); font-weight: 800; font-variant-numeric: tabular-nums; }
-        .proof-dot { width: 3px; height: 3px; border-radius: 50%; background: #C9A24A; }
-        @media (max-width: 420px) { .proof-row, .proof-total { font-size: 11.5px; } .proof-row { gap: 2px 6px; } .proof { padding: 10px 14px; } }
-
-        /* ── AVISO ── */
-        .alert { display: flex; gap: 12px; align-items: flex-start; margin-top: 26px; padding: 15px 16px; text-align: left; border-left: 3px solid var(--red); }
-        .alert svg { flex-shrink: 0; margin-top: 1px; color: var(--red); }
-        .alert-title { font-size: 14.5px; font-weight: 800; line-height: 1.35; }
-        .alert-text { font-size: 13px; color: var(--muted); line-height: 1.5; margin-top: 3px; }
-
-        /* ── botão dourado ── */
-        .btn-gold {
-            position: relative; overflow: hidden;
-            display: flex; align-items: center; justify-content: center; gap: 8px;
-            width: 100%; height: 50px; padding: 0 18px;
+        /* ── MENU FIXO ── */
+        .topnav {
+            position: fixed; z-index: 60; top: 0; left: 0; right: 0;
+            display: flex; align-items: center; gap: 8px;
+            max-width: 480px; margin: 0 auto;
+            padding: calc(8px + env(safe-area-inset-top)) 10px 8px;
+            animation: navIn 0.6s 0.3s var(--ease) both;
+        }
+        .topnav::before {
+            content: ''; position: absolute; inset: 0; z-index: -1;
+            background: rgba(11, 22, 48, 0.78);
+            -webkit-backdrop-filter: blur(18px) saturate(1.4); backdrop-filter: blur(18px) saturate(1.4);
+            border-bottom: 1px solid rgba(232, 199, 122, 0.18);
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .topnav.solid::before { opacity: 1; }
+        .topnav-logo { flex-shrink: 0; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: #0E1B3A; border: 1px solid var(--line); box-shadow: 0 6px 16px -6px rgba(0, 0, 0, 0.8); }
+        .topnav-logo img { width: 34px; height: 34px; }
+        .topnav-track {
+            position: relative; flex: 1; min-width: 0;
+            display: flex; justify-content: space-between; padding: 4px;
+            overflow-x: auto; scrollbar-width: none;
+            border-radius: 999px;
+            background: rgba(19, 35, 74, 0.72);
+            border: 1px solid rgba(232, 199, 122, 0.24);
+            -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+            box-shadow: 0 8px 20px -10px rgba(0, 0, 0, 0.8);
+        }
+        .topnav-track::-webkit-scrollbar { display: none; }
+        .topnav-track a {
+            position: relative; z-index: 1; flex-shrink: 0;
+            padding: 8px 9px; border-radius: 999px;
+            font-size: 13px; font-weight: 700; color: #E3E8F3;
+            transition: color 0.25s;
+        }
+        .topnav-track a.on { color: var(--ink); }
+        .topnav-ind {
+            position: absolute; z-index: 0; top: 4px; bottom: 4px; left: 0; width: 0;
             border-radius: 999px;
             background: var(--gold-fill);
-            border: 1px solid #F7E3A0;
-            color: #1A1204;
-            font-size: 13.5px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase;
-            box-shadow: 0 8px 20px -8px rgba(160,115,25,0.55), inset 0 -3px 6px rgba(90,60,0,0.35), inset 0 2px 2px rgba(255,255,255,0.6);
-            transition: transform 0.12s ease;
+            box-shadow: 0 4px 12px -4px rgba(212, 164, 76, 0.8), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+            opacity: 0;
+            transition: transform 0.45s cubic-bezier(0.3, 1.3, 0.5, 1), width 0.45s cubic-bezier(0.3, 1.3, 0.5, 1), opacity 0.3s;
+        }
+        @media (max-width: 380px) { .topnav-track a { padding: 7px 7px; font-size: 12px; } }
+
+        /* ── CAPA IMERSIVA ── */
+        .hero {
+            position: relative; isolation: isolate;
+            margin: 0 -16px;
+            padding: calc(58px + env(safe-area-inset-top)) 16px 0;
+            text-align: center;
+            overflow: hidden;
+        }
+        .hero-bg { position: absolute; inset: 0 0 auto 0; height: 560px; z-index: -3; overflow: hidden; }
+        .hero-bg img {
+            width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%;
+            filter: brightness(0.62) saturate(1.15) contrast(1.05);
+            animation: bgIn 1.6s var(--ease) both;
+        }
+        .hero-bg::after {
+            content: ''; position: absolute; inset: 0;
+            background:
+                linear-gradient(180deg, rgba(11, 22, 48, 0.55) 0%, rgba(11, 22, 48, 0.15) 30%, rgba(11, 22, 48, 0.55) 62%, #0B1630 96%),
+                radial-gradient(120% 60% at 50% 100%, rgba(11, 22, 48, 0.9), transparent 70%);
+        }
+        .hero-stage { position: relative; height: clamp(262px, 76vw, 320px); }
+        .hero-halo {
+            position: absolute; z-index: -2; left: 50%; top: 44%;
+            width: 125%; aspect-ratio: 1; border-radius: 50%;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(244, 214, 140, 0.62) 0%, rgba(232, 199, 122, 0.36) 22%, rgba(212, 164, 76, 0.14) 42%, transparent 64%);
+            animation: glow 5s ease-in-out infinite;
+        }
+        .hero-rays {
+            position: absolute; z-index: -2; left: 50%; top: 44%;
+            width: 170%; aspect-ratio: 1;
+            transform: translate(-50%, -50%);
+            background: repeating-conic-gradient(from 0deg, rgba(244, 223, 166, 0.11) 0deg 5deg, transparent 5deg 18deg);
+            -webkit-mask-image: radial-gradient(circle, #000 0%, rgba(0, 0, 0, 0.6) 25%, transparent 52%);
+                    mask-image: radial-gradient(circle, #000 0%, rgba(0, 0, 0, 0.6) 25%, transparent 52%);
+            animation: spin 80s linear infinite;
+        }
+        /* texto vazado atrás do Diego (DNA dos Reels) */
+        .hero-ghost {
+            position: absolute; z-index: -1; left: -12%; right: -12%; top: 6px;
+            font-family: var(--display); font-weight: 400; text-transform: uppercase;
+            font-size: clamp(74px, 24vw, 100px); line-height: 0.92; letter-spacing: 0.01em;
+            color: transparent;
+            -webkit-text-stroke: 1.5px rgba(244, 223, 166, 0.38);
+            user-select: none; pointer-events: none;
+            animation: rise 1.2s 0.15s var(--ease) both;
+        }
+        .hero-diego {
+            position: absolute; left: 50%; bottom: 0; transform: translateX(-50%);
+            height: 100%; width: auto; max-width: none;
+            filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.55));
+            -webkit-mask-image: linear-gradient(to bottom, #000 62%, rgba(0, 0, 0, 0.5) 82%, transparent 100%);
+                    mask-image: linear-gradient(to bottom, #000 62%, rgba(0, 0, 0, 0.5) 82%, transparent 100%);
+        }
+        .hero-diego-wrap { position: absolute; inset: 0; animation: heroIn 1.2s 0.1s var(--ease) both; }
+        .hero-stage .spark.s1 { top: 18%; left: 12%; }
+        .hero-stage .spark.s2 { top: 8%; right: 14%; width: 14px; height: 14px; animation-delay: 1.2s; }
+        .hero-stage .spark.s3 { top: 46%; right: 6%; width: 16px; height: 16px; animation-delay: 2.1s; }
+
+        .hero-info { position: relative; margin-top: -64px; animation: rise 0.9s 0.35s var(--ease) both; }
+        .hero-brand {
+            display: inline-flex; align-items: center; gap: 10px;
+            font-size: 13px; font-weight: 800; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold-soft);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+        }
+        .hero-brand::before, .hero-brand::after { content: ''; width: 22px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-hi)); }
+        .hero-brand::after { transform: scaleX(-1); }
+        .hero-name {
+            position: relative; display: inline-block;
+            font-family: var(--display); font-weight: 400; text-transform: uppercase;
+            font-size: clamp(84px, 25vw, 110px); line-height: 0.92; letter-spacing: 0.02em;
+            margin-top: 2px;
+            filter: drop-shadow(0 6px 22px rgba(0, 0, 0, 0.75)) drop-shadow(0 2px 2px rgba(0, 0, 0, 0.6));
+        }
+        .hero-name .spark { top: 6px; right: -22px; }
+        .hero-tagline {
+            margin: 8px auto 0; max-width: 360px; text-wrap: balance;
+            font-size: 17px; font-weight: 600; line-height: 1.45; color: #EEF1F7;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.85);
+        }
+        .hero-tagline b { font-weight: 800; color: var(--gold-hi); }
+        .reach {
+            display: inline-flex; align-items: center; gap: 9px;
+            margin-top: 12px; padding: 8px 16px;
+            border-radius: 999px;
+            background: rgba(19, 35, 74, 0.7);
+            border: 1px solid var(--line);
+            -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+            font-size: clamp(13.5px, 3.9vw, 15px); font-weight: 600; color: var(--soft); white-space: nowrap;
+        }
+        .reach strong { color: var(--gold-soft); font-weight: 800; font-variant-numeric: tabular-nums; }
+        .live { width: 9px; height: 9px; border-radius: 50%; background: #22C55E; box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.55); animation: live 2s infinite; flex-shrink: 0; }
+
+        /* ── ASSESSORIA (painel de vidro logo abaixo da capa) ── */
+        .panel { margin-top: 16px; padding: 18px 14px 14px; text-align: center; animation: rise 0.9s 0.5s var(--ease) both; }
+        .panel-title {
+            font-family: var(--display); font-weight: 400; text-transform: uppercase;
+            font-size: clamp(32px, 9.6vw, 40px); line-height: 1; letter-spacing: 0.015em;
+        }
+        .f-sign { display: block; font-size: 17px; font-weight: 700; color: #FFFFFF; margin-top: 4px; letter-spacing: 0.01em; }
+        .panel-text { margin: 8px auto 0; max-width: 350px; text-wrap: balance; font-size: 16px; line-height: 1.5; color: var(--soft); }
+        .top-actions { display: grid; gap: 10px; margin-top: 14px; }
+        .top-actions .btn, .dock .btn { padding: 0 12px; font-size: clamp(13.5px, 3.75vw, 15px); letter-spacing: 0.03em; white-space: nowrap; }
+
+        /* ── TÍTULOS DE SEÇÃO ── */
+        .section-title { margin: 64px 0 20px; text-align: center; }
+        .section-title .st {
+            display: block;
+            font-family: var(--display); font-weight: 400; text-transform: uppercase;
+            font-size: clamp(40px, 12.5vw, 52px); line-height: 1; letter-spacing: 0.015em;
+            filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.6));
+        }
+        .section-title .sub {
+            display: inline-flex; align-items: center; gap: 10px;
+            margin-top: 8px;
+            font-family: var(--sans); font-size: 14px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: var(--soft);
+        }
+        .section-title .sub::before, .section-title .sub::after { content: ''; width: 26px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-hi)); }
+        .section-title .sub::after { transform: scaleX(-1); }
+        .section-title .sub.handle { text-transform: none; letter-spacing: 0.02em; font-size: 15px; }
+
+        /* ── GUIAS GRÁTIS: carrossel de capas ── */
+        .rail {
+            display: flex; gap: 14px;
+            margin: 0 -16px; padding: 6px 16px 22px;
+            overflow-x: auto; overscroll-behavior-x: contain;
+            scroll-snap-type: x mandatory; scroll-padding: 0 16px;
+            scrollbar-width: none;
+        }
+        .rail::-webkit-scrollbar { display: none; }
+        .gcard {
+            flex: 0 0 214px; scroll-snap-align: start;
+            display: flex; flex-direction: column;
+            padding: 10px 10px 14px;
+            border-radius: 20px;
+            transition: transform 0.15s ease;
+        }
+        .gcard:active { transform: scale(0.97); }
+        .gcover { position: relative; display: block; border-radius: 12px; overflow: hidden; box-shadow: 0 18px 30px -16px rgba(0, 0, 0, 0.95); }
+        .gcover img { width: 100%; height: auto; aspect-ratio: 400 / 566; object-fit: cover; }
+        .gcover::after { content: ''; position: absolute; inset: 0; background: linear-gradient(115deg, transparent 40%, rgba(255, 255, 255, 0.14) 50%, transparent 60%); }
+        .badge {
+            position: absolute; bottom: 10px; right: 10px; z-index: 1;
+            padding: 6px 10px; border-radius: 8px;
+            background: var(--gold-fill); color: var(--ink);
+            font-size: 13px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;
+            box-shadow: 0 6px 14px -6px rgba(0, 0, 0, 0.8);
+        }
+        .gtitle { display: block; margin-top: 12px; padding: 0 4px; font-size: 16px; font-weight: 700; line-height: 1.35; color: #FFFFFF; }
+        .gmore { display: inline-flex; align-items: center; gap: 6px; margin-top: auto; padding: 10px 4px 0; font-size: 14px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-hi); }
+        .gmore svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+        .rail-hint { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: -8px; font-size: 14px; font-weight: 700; color: var(--soft); }
+        .rail-hint svg { width: 18px; height: 18px; fill: none; stroke: var(--gold-hi); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; animation: nudge 1.4s ease-in-out infinite; }
+
+        /* ── GUIA PAGO (cartão com foto) ── */
+        .paid {
+            display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 12px;
+            margin-top: 14px; padding: 18px 18px; overflow: hidden;
+            text-align: left;
+            transition: transform 0.15s ease;
+        }
+        .paid:active { transform: scale(0.98); }
+        .paid-bg { position: absolute; inset: 0; z-index: -1; border-radius: inherit; overflow: hidden; }
+        .paid-bg img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; filter: brightness(0.5) saturate(1.1); }
+        .paid-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(11, 22, 48, 0.96) 0%, rgba(11, 22, 48, 0.82) 55%, rgba(11, 22, 48, 0.45) 100%); }
+        .paid { isolation: isolate; }
+        .paid-name { display: block; font-size: 17px; font-weight: 800; line-height: 1.3; color: #FFFFFF; }
+        .paid-price { display: block; margin-top: 2px; font-family: var(--display); font-size: 40px; line-height: 1.05; letter-spacing: 0.01em; }
+        .paid-go {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 12px 14px; border-radius: 12px;
+            border: 1.5px solid rgba(232, 199, 122, 0.8); background: rgba(11, 22, 48, 0.55);
+            font-size: 14px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-soft);
             white-space: nowrap;
         }
-        .btn-gold::after {
-            content: ''; position: absolute; top: 0; bottom: 0; left: 0; width: 35%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.65), transparent);
-            animation: sheen 4.5s ease-in-out infinite 1.5s;
-        }
-        .btn-gold:active { transform: scale(0.97); }
-        .btn-gold svg { width: 18px; height: 18px; fill: #1A1204; flex-shrink: 0; }
+        .paid-go svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
 
-        /* ── BLOCOS EM ZIGUE-ZAGUE ── */
-        .feature {
-            position: relative;
-            display: grid; grid-template-columns: 44% 1fr;
-            align-items: center; gap: 6px;
-            margin-top: 44px;
+        /* ── REDES (números que contam) ── */
+        .nets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        .net {
+            display: flex; flex-direction: column; align-items: center;
+            padding: 18px 6px 14px; text-align: center; border-radius: 20px;
+            transition: transform 0.15s ease;
         }
-        .feature.rev { grid-template-columns: 1fr 44%; }
-        .feature.rev .f-media { order: 2; }
-        .feature .script-bg { font-size: 58px; top: -22px; }
-        .feature:not(.rev) .script-bg { right: -8px; }
-        .feature.rev .script-bg { left: -8px; }
-        .f-media { position: relative; height: 250px; }
-        .f-media img.person {
-            position: absolute; left: -50%; right: -50%; bottom: 0; margin: 0 auto;
-            height: 100%; width: auto; max-width: none;
-            -webkit-mask-image: radial-gradient(ellipse 50% 58% at 50% 42%, #000 62%, transparent 100%);
-                    mask-image: radial-gradient(ellipse 50% 58% at 50% 42%, #000 62%, transparent 100%);
+        .net:active { transform: scale(0.96); }
+        @media (hover: hover) { .net:hover { transform: translateY(-3px); } }
+        .net-icon {
+            width: 50px; height: 50px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            border: 1.5px solid rgba(232, 199, 122, 0.7);
+            background: radial-gradient(circle at 50% 30%, rgba(232, 199, 122, 0.22), rgba(11, 22, 48, 0.4) 70%);
+            color: var(--gold-hi);
+            box-shadow: 0 0 24px -6px rgba(212, 164, 76, 0.55);
         }
-        .f-media img.book {
-            position: absolute; left: 50%; top: 50%;
-            width: 128px; height: auto;
-            transform: translate(-50%, -50%) rotate(-6deg);
-            border-radius: 6px;
-            box-shadow: 0 22px 40px -10px rgba(0,0,0,0.95), 0 0 0 1px rgba(255,255,255,0.08);
+        .net-icon svg { width: 23px; height: 23px; fill: currentColor; }
+        .net .proof-number {
+            display: block; margin-top: 12px;
+            font-family: var(--display); font-weight: 400;
+            font-size: clamp(25px, 7.6vw, 31px); line-height: 1; letter-spacing: 0.01em;
+            color: #FFFFFF; white-space: nowrap; font-variant-numeric: tabular-nums;
         }
-        .fan { position: absolute; inset: 0; }
-        .fan img {
-            position: absolute; left: 50%; top: 50%;
-            width: 84px; height: auto; border-radius: 5px;
-            box-shadow: 0 12px 22px -10px rgba(40,30,10,0.6), 0 0 0 1px rgba(0,0,0,0.08);
-            transform-origin: 50% 100%;
+        .net-label { font-size: 14px; font-weight: 700; color: var(--soft); margin-top: 6px; }
+        .net-follow {
+            margin-top: 12px; padding: 8px 14px; border-radius: 10px;
+            border: 1.5px solid rgba(232, 199, 122, 0.75);
+            font-size: 13px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-soft);
         }
-        .fan img:nth-child(1) { transform: translate(-50%, -50%) rotate(-22deg) translateX(-6px); z-index: 1; }
-        .fan img:nth-child(2) { transform: translate(-50%, -50%) rotate(-11deg) translateX(-3px); z-index: 2; }
-        .fan img:nth-child(3) { transform: translate(-50%, -52%) rotate(0deg); z-index: 5; }
-        .fan img:nth-child(4) { transform: translate(-50%, -50%) rotate(11deg) translateX(3px); z-index: 4; }
-        .fan img:nth-child(5) { transform: translate(-50%, -50%) rotate(22deg) translateX(6px); z-index: 3; }
+
+        /* ── AVISO (dourado, sem vermelho) ── */
+        .alert {
+            display: flex; gap: 14px; align-items: flex-start;
+            margin-top: 28px; padding: 18px 18px; text-align: left;
+            border-left: 3px solid var(--gold);
+        }
+        .alert > svg { flex-shrink: 0; margin-top: 2px; color: var(--gold-hi); }
+        .alert-title { font-size: 17px; font-weight: 800; line-height: 1.35; color: #FFFFFF; }
+        .alert-text { font-size: 16px; color: var(--soft); line-height: 1.5; margin-top: 4px; }
+
+        /* ── CARTÕES GRANDES (Sorteio, Mutirão) ── */
+        .feature-card { margin-top: 64px; overflow: hidden; padding: 0; text-align: center; }
+        .feature-card .fc-media { position: relative; height: 240px; overflow: hidden; border-radius: 22px 22px 0 0; }
+        .feature-card .fc-media img {
+            width: 100%; height: 100%; object-fit: cover;
+            -webkit-mask-image: linear-gradient(180deg, #000 45%, rgba(0, 0, 0, 0.35) 80%, transparent 100%);
+                    mask-image: linear-gradient(180deg, #000 45%, rgba(0, 0, 0, 0.35) 80%, transparent 100%);
+        }
+        .fc-chip {
+            position: absolute; z-index: 1; top: 14px; left: 14px;
+            display: inline-flex; align-items: center; gap: 7px;
+            padding: 7px 11px; border-radius: 999px;
+            background: rgba(11, 22, 48, 0.78); border: 1px solid var(--line);
+            -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+            font-size: 13px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-soft);
+        }
+        .fc-body { position: relative; padding: 0 18px 20px; margin-top: -44px; }
+        .fc-title {
+            font-family: var(--display); font-weight: 400; text-transform: uppercase;
+            font-size: clamp(40px, 12.5vw, 50px); line-height: 0.98; letter-spacing: 0.015em;
+            filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.7));
+        }
+        .fc-text { margin: 10px auto 16px; max-width: 340px; font-size: 16px; line-height: 1.5; color: var(--soft); }
+        .feature-card.mutirao .fc-media { height: 200px; }
+
+        /* ── COLEÇÃO: leque de capas ── */
+        .offer { margin-top: 64px; padding: 0 0 20px; text-align: center; overflow: hidden; }
+        .fan-stage { position: relative; height: 262px; margin-top: 4px; }
+        .fan-stage::before {
+            content: ''; position: absolute; left: 50%; top: 58%; width: 300px; height: 300px; transform: translate(-50%, -50%);
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(232, 199, 122, 0.42), rgba(212, 164, 76, 0.12) 45%, transparent 68%);
+        }
+        .fan-stage img {
+            position: absolute; left: 50%; top: 34px;
+            width: 112px; height: auto; aspect-ratio: 400 / 533; margin-left: -56px;
+            border-radius: 7px;
+            box-shadow: 0 18px 30px -12px rgba(0, 0, 0, 0.95), 0 0 0 1px rgba(255, 255, 255, 0.08);
+            transform-origin: 50% 190%;
+            transition: transform 0.9s var(--ease);
+        }
+        .fan-stage img:nth-child(1) { z-index: 1; }
+        .fan-stage img:nth-child(2) { z-index: 2; }
+        .fan-stage img:nth-child(3) { z-index: 3; }
+        .fan-stage img:nth-child(4) { z-index: 7; width: 128px; margin-left: -64px; top: 22px; }
+        .fan-stage img:nth-child(5) { z-index: 3; }
+        .fan-stage img:nth-child(6) { z-index: 2; }
+        .fan-stage img:nth-child(7) { z-index: 1; }
+        .in .fan-stage img:nth-child(1), .no-js .fan-stage img:nth-child(1) { transform: rotate(-24deg); }
+        .in .fan-stage img:nth-child(2), .no-js .fan-stage img:nth-child(2) { transform: rotate(-16deg); }
+        .in .fan-stage img:nth-child(3), .no-js .fan-stage img:nth-child(3) { transform: rotate(-8deg); }
+        .in .fan-stage img:nth-child(5), .no-js .fan-stage img:nth-child(5) { transform: rotate(8deg); }
+        .in .fan-stage img:nth-child(6), .no-js .fan-stage img:nth-child(6) { transform: rotate(16deg); }
+        .in .fan-stage img:nth-child(7), .no-js .fan-stage img:nth-child(7) { transform: rotate(24deg); }
         .fan-count {
-            position: absolute; z-index: 6; left: 50%; transform: translateX(-50%); bottom: 24px;
-            padding: 5px 10px; border-radius: 999px;
-            background: var(--gold-fill); color: #1A1204;
-            font-size: 11px; font-weight: 800; letter-spacing: 0.06em;
-            box-shadow: 0 6px 14px -6px rgba(120,85,15,0.6);
+            position: absolute; z-index: 9; left: 50%; bottom: 8px; transform: translateX(-50%);
+            padding: 8px 16px; border-radius: 10px;
+            background: var(--gold-fill); color: var(--ink);
+            font-family: var(--display); font-size: 22px; letter-spacing: 0.06em;
+            box-shadow: 0 10px 24px -8px rgba(0, 0, 0, 0.9);
         }
-        .f-media .spark { top: 18px; right: 10px; z-index: 6; }
-        .f-body { position: relative; text-align: center; }
-        .f-title { font-family: var(--serif); font-weight: 400; font-size: 29px; line-height: 1.02; }
-        .f-sign { display: block; font-family: var(--sans); font-size: 17px; font-weight: 700; line-height: 1.2; color: #2A3040; margin-top: 4px; }
-        .f-card { margin-top: 12px; padding: 14px 12px; font-size: 13.5px; line-height: 1.5; color: #2A3040; }
-        .f-card small { display: block; margin-top: 6px; font-size: 12px; color: var(--muted); }
-        .f-body .btn-gold { margin-top: 12px; }
-        .price { margin-top: 8px; font-size: 13px; color: var(--muted); }
-        .price s { margin-right: 6px; }
-        .price b { font-size: 20px; color: var(--text); font-weight: 800; }
-        .coupon {
-            display: inline-flex; align-items: center; gap: 6px;
-            margin-top: 10px; padding: 0 16px; height: 40px; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700;
-            border: 1.5px dashed #C9A24A; border-radius: 999px; background: #FFFDF7;
-            font-size: 12px; color: var(--muted);
-        }
-        .coupon code { font-family: var(--sans); font-weight: 800; letter-spacing: 0.08em; color: #8A6214; }
-        .coupon .copy { font-weight: 800; color: var(--text); }
-        .offer-note { font-size: 11.5px; color: var(--muted); margin-top: 8px; }
-        .offer.expired .coupon, .offer.expired .price s, .offer.expired .price small { display: none; }
+        .offer .fc-body { margin-top: 18px; }
+        .price { display: flex; align-items: baseline; justify-content: center; gap: 8px; margin: -4px 0 16px; }
+        .price b { font-family: var(--display); font-weight: 400; font-size: 46px; line-height: 1; letter-spacing: 0.01em; }
+        .price small { font-size: 15px; font-weight: 700; color: var(--soft); }
 
-        @media (max-width: 374px) {
-            .f-title { font-size: 25px; }
-            .f-sign { font-size: 16px; }
-            .f-card { font-size: 12.5px; padding: 12px 10px; }
-            .btn-gold { font-size: 12px; padding: 0 12px; }
-            .f-media { height: 220px; }
-        }
-
-        /* ── MAIS ── */
-        .section-title { margin: 52px 0 14px; text-align: center; }
-        .section-title span { font-family: var(--serif); font-size: 26px; }
-        .section-title i { display: block; font-style: normal; font-family: var(--sans); font-size: 16px; font-weight: 700; margin-top: 4px; color: #2A3040; }
-        .list { display: flex; flex-direction: column; gap: 12px; }
-        .list-note { text-align: center; font-size: 12px; color: var(--muted); margin-top: -2px; }
-        .list-note strong { color: #8A6214; }
-        .row { display: flex; align-items: center; gap: 14px; width: 100%; text-align: left; padding: 14px 16px; transition: transform 0.12s; }
+        /* ── MAIS DO DIEGO ── */
+        .list { display: grid; gap: 12px; }
+        .row { display: flex; align-items: center; gap: 14px; width: 100%; text-align: left; padding: 16px 16px; border-radius: 18px; transition: transform 0.12s; }
         .row:active { transform: scale(0.985); }
         .row-icon {
-            width: 42px; height: 42px; flex-shrink: 0; border-radius: 12px;
+            width: 46px; height: 46px; flex-shrink: 0; border-radius: 13px;
             background: var(--gold-fill);
             display: flex; align-items: center; justify-content: center;
-            color: #1A1204;
-            box-shadow: inset 0 -2px 4px rgba(90,60,0,0.35);
+            color: var(--ink);
+            box-shadow: 0 8px 18px -8px rgba(212, 164, 76, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.5);
         }
-        .row-icon svg { width: 20px; height: 20px; }
+        .row-icon svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
         .row-text { flex: 1; min-width: 0; }
-        .link-title { display: block; font-size: 15px; font-weight: 700; line-height: 1.3; }
-        .row-desc { display: block; font-size: 13px; color: var(--muted); line-height: 1.4; margin-top: 2px; }
-        .row-desc strong { color: #8A6214; font-weight: 800; letter-spacing: 0.04em; }
-        .chev { flex-shrink: 0; color: #B8892B; }
-
-        /* ── REDES ── */
-        .social { display: flex; justify-content: center; gap: 12px; margin-top: 34px; }
-        .social a { width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; border-radius: 50%; color: #8A6214; transition: transform 0.12s; }
-        .social a:active { transform: scale(0.94); }
-        .social svg { width: 21px; height: 21px; fill: currentColor; }
+        .link-title { display: block; font-size: 17px; font-weight: 800; line-height: 1.3; color: #FFFFFF; }
+        .chev { flex-shrink: 0; width: 22px; height: 22px; fill: none; stroke: var(--gold-hi); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+        .list-note { text-align: center; font-size: 16px; line-height: 1.5; color: var(--soft); margin-top: 4px; }
+        .list-note strong { color: var(--gold-soft); font-weight: 800; letter-spacing: 0.04em; }
 
         /* ── RODAPÉ ── */
-        .footer { margin-top: 28px; text-align: center; font-size: 12px; color: var(--muted); line-height: 1.7; }
-        .footer strong { color: var(--text); font-weight: 700; }
+        .footer { margin-top: 56px; padding-top: 26px; border-top: 1px solid rgba(232, 199, 122, 0.18); text-align: center; font-size: 15px; color: var(--soft); line-height: 1.7; }
+        .footer img { width: 64px; height: 64px; margin: 0 auto 12px; filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.6)); }
+        .footer strong { color: #FFFFFF; font-weight: 800; }
 
         /* ── BARRA FIXA DO WHATSAPP ── */
         .dock {
             position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
-            padding: 24px 16px calc(12px + env(safe-area-inset-bottom));
-            background: linear-gradient(to top, rgba(250,246,238,0.96) 40%, rgba(250,246,238,0));
-            transform: translateY(110%);
+            padding: 26px 16px calc(12px + env(safe-area-inset-bottom));
+            background: linear-gradient(to top, rgba(11, 22, 48, 0.97) 45%, rgba(11, 22, 48, 0));
+            transform: translateY(115%);
             transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
             pointer-events: none;
         }
         .dock.show { transform: translateY(0); pointer-events: auto; }
-        .dock .btn-gold { max-width: 428px; margin: 0 auto; height: 54px; font-size: 14px; }
+        .dock .btn { max-width: 448px; margin: 0 auto; text-transform: none; letter-spacing: 0; font-size: clamp(15px, 4.2vw, 17px); }
 
         /* ── FOLHA DO MUTIRÃO ── */
         .sheet-overlay {
             position: fixed; inset: 0; z-index: 200;
             display: flex; align-items: flex-end; justify-content: center;
-            background: rgba(21,26,38,0.45);
+            background: rgba(5, 10, 24, 0.62);
             -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
             opacity: 0; visibility: hidden;
             transition: opacity 0.25s, visibility 0.25s;
         }
         .sheet-overlay.open { opacity: 1; visibility: visible; }
         .sheet {
-            width: 100%; max-width: 460px;
+            width: 100%; max-width: 480px;
             max-height: 90vh; max-height: 90dvh; overflow-y: auto;
-            background: #FFFFFF;
-            border: 1px solid rgba(184,137,43,0.22); border-bottom: 0;
-            border-radius: 24px 24px 0 0;
-            box-shadow: 0 -10px 40px -10px rgba(110,80,20,0.3);
+            background: linear-gradient(180deg, #1A2D5A 0%, #13234A 40%, #0E1B3A 100%);
+            border: 1px solid var(--line); border-bottom: 0;
+            border-radius: 26px 26px 0 0;
+            box-shadow: 0 -16px 50px -10px rgba(0, 0, 0, 0.7);
             padding: 12px 22px calc(28px + env(safe-area-inset-bottom));
             transform: translateY(100%);
             transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
@@ -332,162 +559,51 @@
             -webkit-overflow-scrolling: touch;
         }
         .sheet-overlay.open .sheet { transform: translateY(0); }
-        .sheet-handle { width: 40px; height: 4px; border-radius: 2px; background: rgba(21,26,38,0.15); margin: 0 auto 18px; }
-        .sheet-close { position: absolute; top: 14px; right: 14px; width: 38px; height: 38px; border-radius: 50%; background: #F4EEE1; display: flex; align-items: center; justify-content: center; color: var(--muted); }
-        .sheet-kicker { font-size: 12px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: #9A7426; }
-        .sheet-title { font-family: var(--serif); font-weight: 400; font-size: 29px; line-height: 1.12; margin-top: 6px; padding-right: 36px; }
-        .sheet-intro { font-size: 14px; line-height: 1.6; color: var(--muted); margin-top: 10px; }
-        .sheet-list { list-style: none; margin: 20px 0 24px; padding-top: 18px; border-top: 1px solid rgba(21,26,38,0.09); display: grid; gap: 11px; }
-        .sheet-list li { display: flex; gap: 10px; font-size: 14px; line-height: 1.45; color: #2A3040; }
+        .sheet-handle { width: 42px; height: 4px; border-radius: 2px; background: rgba(255, 255, 255, 0.25); margin: 0 auto 18px; }
+        .sheet-close { position: absolute; top: 14px; right: 14px; width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.08); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; color: var(--gold-soft); }
+        .sheet-kicker { font-size: 13px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold-hi); }
+        .sheet-title { font-family: var(--display); font-weight: 400; text-transform: uppercase; font-size: 36px; line-height: 1.14; margin-top: 8px; padding-right: 40px; color: #FFFFFF; }
+        .sheet-intro { font-size: 16px; line-height: 1.6; color: var(--soft); margin-top: 10px; }
+        .sheet-list { list-style: none; margin: 20px 0 24px; padding-top: 18px; border-top: 1px solid rgba(232, 199, 122, 0.2); display: grid; gap: 12px; }
+        .sheet-list li { display: flex; gap: 10px; font-size: 16px; line-height: 1.45; color: #EEF1F7; }
         .sheet-list svg { flex-shrink: 0; margin-top: 2px; }
-        .sheet .btn-gold { height: 56px; font-size: 14px; }
 
-        /* ── MENU FIXO ANIMADO ── */
-        html { scroll-behavior: smooth; scroll-padding-top: 72px; }
-        .topnav {
-            position: fixed; z-index: 60; top: 0; left: 0; right: 0;
-            display: flex; align-items: center; gap: 8px;
-            max-width: 460px; margin: 0 auto;
-            padding: calc(8px + env(safe-area-inset-top)) 10px 8px;
-            animation: navIn 0.6s 0.4s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-        }
-        .topnav::before {
-            content: ''; position: absolute; inset: 0; z-index: -1;
-            background: rgba(250,246,238,0.72);
-            -webkit-backdrop-filter: blur(18px) saturate(1.4); backdrop-filter: blur(18px) saturate(1.4);
-            border-bottom: 1px solid rgba(184,137,43,0.18);
-            opacity: 0; transition: opacity 0.3s;
-        }
-        .topnav.solid::before { opacity: 1; }
-        @keyframes navIn { from { opacity: 0; transform: translateY(-100%); } to { opacity: 1; transform: none; } }
-        .topnav-logo { flex-shrink: 0; width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: #fff; box-shadow: 0 4px 12px -4px rgba(110,80,20,0.45); }
-        .topnav-logo img { width: 34px; height: 34px; display: block; }
-        .topnav-track {
-            position: relative; flex: 1; min-width: 0;
-            display: flex; justify-content: space-between; gap: 0; padding: 4px;
-            overflow-x: auto; scrollbar-width: none;
-            border-radius: 999px;
-            background: rgba(255,255,255,0.78);
-            border: 1px solid rgba(184,137,43,0.22);
-            -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
-            box-shadow: 0 6px 18px -10px rgba(110,80,20,0.45);
-        }
-        .topnav-track::-webkit-scrollbar { display: none; }
-        .topnav-track a {
-            position: relative; z-index: 1; flex-shrink: 0;
-            padding: 8px 8px; border-radius: 999px;
-            font-size: 12.5px; font-weight: 700; color: #3A4254;
-            transition: color 0.25s;
-        }
-        .topnav-track a.on { color: #1A1204; }
-        .topnav-ind {
-            position: absolute; z-index: 0; top: 4px; bottom: 4px; left: 0; width: 0;
-            border-radius: 999px;
-            background: var(--gold-fill);
-            box-shadow: 0 4px 10px -4px rgba(150,105,20,0.6), inset 0 1px 1px rgba(255,255,255,0.6);
-            opacity: 0;
-            transition: transform 0.45s cubic-bezier(0.3, 1.3, 0.5, 1), width 0.45s cubic-bezier(0.3, 1.3, 0.5, 1), opacity 0.3s;
-        }
-        @media (max-width: 380px) { .topnav-track a { padding: 7px 7px; font-size: 11.5px; } .topnav-track { gap: 0; } }
-
-        /* ── entrada dos blocos ao rolar ── */
-        .js .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s ease, transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1); }
+        /* ── entrada ao rolar ── */
+        .js .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.8s var(--ease); }
         .js .reveal.in { opacity: 1; transform: none; }
+        .js .rail .gcard { opacity: 0; transform: translateX(40px); transition: opacity 0.6s ease, transform 0.7s var(--ease); }
+        .js .rail.in .gcard { opacity: 1; transform: none; }
+        .js .rail.in .gcard:nth-child(2) { transition-delay: 0.1s; }
+        .js .rail.in .gcard:nth-child(3) { transition-delay: 0.2s; }
+        .js .nets .net:nth-child(2) { transition-delay: 0.08s; }
+        .js .nets .net:nth-child(3) { transition-delay: 0.16s; }
 
-        /* ── logo + seguidores na capa ── */
-        .hero { padding-top: 0; }
-        .hero-logo { display: block; width: 92px; height: 92px; margin: 0 auto -6px; filter: drop-shadow(0 8px 16px rgba(60,40,0,0.35)); animation: rise 0.8s 0.4s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
-        .reach { display: inline-flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 13px; color: var(--muted); }
-        .reach strong { color: #8A6214; font-weight: 800; }
-        .live { width: 8px; height: 8px; border-radius: 50%; background: #22C55E; box-shadow: 0 0 0 0 rgba(34,197,94,0.5); animation: live 2s infinite; }
-        @keyframes live { 70% { box-shadow: 0 0 0 8px rgba(34,197,94,0); } 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); } }
-
-        /* ── REDES EM DESTAQUE ── */
-        .nets-wrap .section-title { margin-top: 20px; margin-bottom: 10px; }
-        .nets-wrap .section-title i { font-size: 15px; }
-        .nets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-        .net {
-            display: flex; flex-direction: column; align-items: center;
-            padding: 16px 6px 12px; text-align: center;
-            transition: transform 0.15s ease, box-shadow 0.2s;
+        @media (max-width: 374px) {
+            .net .proof-number { font-size: 24px; }
+            .net-follow { padding: 8px 10px; letter-spacing: 0.06em; }
+            .paid-price { font-size: 34px; }
+            .btn { font-size: 14px; letter-spacing: 0.04em; }
         }
-        .net:nth-child(2) { transition-delay: 0.08s; }
-        .net:nth-child(3) { transition-delay: 0.16s; }
-        .net:active { transform: scale(0.96); }
-        @media (hover: hover) { .net:hover { transform: translateY(-3px); } }
-        .net-icon { width: 46px; height: 46px; border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 16px -8px rgba(0,0,0,0.5); }
-        .net-icon svg { width: 24px; height: 24px; fill: #fff; }
-        .net-icon.ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
-        .net-icon.tt { background: #111; }
-        .net-icon.tt svg { filter: drop-shadow(1.5px 1.5px 0 #FE2C55) drop-shadow(-1.5px -1.5px 0 #25F4EE); }
-        .net-icon.yt { background: #FF0000; }
-        .net .proof-number { display: block; margin-top: 10px; font-size: 20px; font-weight: 800; color: var(--text); letter-spacing: -0.3px; }
-        .net-label { font-size: 12px; color: var(--muted); margin-top: 1px; }
-        .btn-gold.btn-sm { height: 36px; margin-top: 10px; padding: 0 10px; font-size: 11.5px; letter-spacing: 0.08em; }
-        @media (max-width: 374px) { .net .proof-number { font-size: 17px; } }
 
-        /* ── BOTÕES: padrão único (ouro da marca, canto médio, caixa-alta) ── */
-        .btn-gold {
-            height: 50px; padding: 0 18px;
-            border-radius: 12px;
-            background: #E8B33A; border: 0;
-            color: #0A1428;
-            font-size: 13.5px; font-weight: 800; letter-spacing: 0.07em; text-transform: uppercase;
-            box-shadow: 0 6px 16px -8px rgba(138,100,16,0.55), inset 0 -2px 0 rgba(0,0,0,0.10);
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after { animation: none !important; transition: none !important; }
+            .js .reveal, .js .rail .gcard { opacity: 1 !important; transform: none !important; }
+            .fan-stage img:nth-child(1) { transform: rotate(-24deg); }
+            .fan-stage img:nth-child(2) { transform: rotate(-16deg); }
+            .fan-stage img:nth-child(3) { transform: rotate(-8deg); }
+            .fan-stage img:nth-child(5) { transform: rotate(8deg); }
+            .fan-stage img:nth-child(6) { transform: rotate(16deg); }
+            .fan-stage img:nth-child(7) { transform: rotate(24deg); }
         }
-        .btn-gold::after { display: none; }
-        @media (hover: hover) { .btn-gold:hover { background: #F3CE72; } }
-        .btn-gold svg { fill: #0A1428; }
-        .btn-gold.btn-sm { height: 34px; border-radius: 9px; font-size: 11px; }
-        .coupon { border-radius: 12px; }
-        .fan-count { border-radius: 8px; background: #E8B33A; color: #0A1428; box-shadow: none; }
-        .row-icon { border-radius: 10px; background: #E8B33A; }
-        .f-body .btn-gold { width: 100%; max-width: 100%; padding: 0 10px; font-size: 12.5px; letter-spacing: 0.05em; }
-        .f-body { min-width: 0; }
-
-        /* Nada pode vazar para o lado (o navegador do Instagram no iPhone ignora overflow-x no body) */
-        html, body { overflow-x: hidden; max-width: 100%; }
-        .page { overflow: hidden; }
-        .feature, .f-media { max-width: 100%; }
-    
-        /* ── ASSESSORIA NO TOPO + GUIAS GRÁTIS ── */
-        .top-actions { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; }
-        .top-actions .btn-gold { height: 56px; font-size: 14px; }
-        .btn-ghost { background: #fff !important; border: 1.5px solid #E8B33A !important; box-shadow: none !important; }
-        .guide-list { display: flex; flex-direction: column; gap: 10px; }
-        .guide-link {
-            display: flex; align-items: center; justify-content: space-between; gap: 12px;
-            padding: 14px 16px; border-radius: 12px; background: #fff; border: 1px solid #EADFC4;
-            color: var(--text); font-weight: 700; font-size: 14px; line-height: 1.35; text-decoration: none;
-            box-shadow: 0 6px 16px -10px rgba(138,100,16,0.45);
-        }
-        .guide-link em { flex-shrink: 0; font-style: normal; font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #8A6214; }
-        .guide-link:active { transform: scale(0.98); }
-
-        /* ── PRIMEIRA DOBRA COMPACTA (iPhone 390x844): botões da assessoria visíveis sem rolar ── */
-        .hero-photo { height: min(66vw, 290px); }
-        .hero-info { margin-top: -70px; }
-        .hero-logo { display: none; } /* a logo já fica no menu fixo; na capa cobria o rosto */
-        .hero-name { font-size: 54px; margin-top: 2px; }
-        .hero-tagline { margin-top: 4px; font-size: 14.5px; line-height: 1.42; max-width: 340px; }
-        .reach { margin-top: 6px; font-size: 12.5px; }
-        #assessoria { margin-top: 16px; }
-        #assessoria .f-media { height: 150px; }
-        #assessoria .f-title { font-size: 26px; }
-        #assessoria .f-sign { font-size: 15px; margin-top: 2px; }
-        #assessoria .f-card { margin-top: 8px; padding: 10px 10px; font-size: 13px; line-height: 1.4; }
-        .top-actions { margin-top: 4px !important; margin-bottom: 4px !important; gap: 8px; }
-        .top-actions .btn-gold { height: 52px; }
-        .sec-tight { margin-top: 30px; }
-        .guide-paid { margin-top: 10px; }
-        .guide-paid .guide-link { background: #FFFDF7; }
     </style>
 </head>
 <body>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-    <symbol id="star" viewBox="0 0 24 24"><path d="M12 0c.6 6.2 5.8 11.4 12 12-6.2.6-11.4 5.8-12 12-.6-6.2-5.8-11.4-12-12C6.2 11.4 11.4 6.2 12 0z" fill="#D4A93F"/></symbol>
+    <symbol id="star" viewBox="0 0 24 24"><path d="M12 0c.6 6.2 5.8 11.4 12 12-6.2.6-11.4 5.8-12 12-.6-6.2-5.8-11.4-12-12C6.2 11.4 11.4 6.2 12 0z" fill="#F0D58F"/></symbol>
     <symbol id="wa" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></symbol>
+    <symbol id="arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
 </svg>
 
 <!-- MENU FIXO: atalhos para as seções; o marcador dourado acompanha a rolagem -->
@@ -503,160 +619,183 @@
         <a href="#mais">Mais</a>
     </div>
 </nav>
+<script>__expira('a[href="#mutirao-bloco"]', '2026-10-26T23:59:59-03:00');</script>
 
 <main class="page" id="topo">
 
-    <!-- CAPA -->
+    <!-- CAPA: foto real de CDE à noite + recorte do Diego com halo dourado -->
     <header class="hero">
-        <div class="hero-photo">
-            <img src="diego-capa.jpg" width="1000" height="1333" alt="Diego com a camisa da seleção do Paraguai em Ciudad del Este" fetchpriority="high">
+        <div class="hero-bg" aria-hidden="true"><img src="bg-cde-noite.webp" width="900" height="1117" alt="" fetchpriority="high"></div>
+        <div class="hero-stage">
+            <div class="hero-rays" aria-hidden="true"></div>
+            <div class="hero-halo" aria-hidden="true"></div>
+            <div class="hero-ghost" aria-hidden="true">Ciudad<br>del Este</div>
+            <div class="hero-diego-wrap">
+                <img class="hero-diego" src="diego-busto.webp" width="916" height="1000" alt="Diego com a camisa da seleção do Paraguai" fetchpriority="high">
+            </div>
+            <span class="spark s1" aria-hidden="true"><svg><use href="#star"/></svg></span>
+            <span class="spark s2" aria-hidden="true"><svg><use href="#star"/></svg></span>
+            <span class="spark s3" aria-hidden="true"><svg><use href="#star"/></svg></span>
         </div>
         <div class="hero-info">
-            <img class="hero-logo" src="logo-ddf.webp" width="280" height="280" alt="Diretamente da Fronteira">
+            <p class="hero-brand">Diretamente da Fronteira</p>
             <h1 class="hero-name"><span class="gold-text">Diego</span><span class="spark" aria-hidden="true"><svg><use href="#star"/></svg></span></h1>
-            <p class="hero-tagline">Brasileiro morando em Ciudad del Este. Residência, empresa e impostos, do jeito certo.</p>
-            <p class="reach"><span class="live" aria-hidden="true"></span><strong id="reach-total">+213 mil seguidores</strong> somando as redes</p>
+            <p class="hero-tagline">Brasileiro morando em Ciudad del Este. Residência, empresa e impostos, <b>do jeito certo.</b></p>
+            <p class="reach"><span class="live" aria-hidden="true"></span><span><strong id="reach-total" class="count">+210 mil seguidores</strong> somando as redes</span></p>
         </div>
     </header>
 
     <!-- ASSESSORIA (ação principal, logo abaixo da capa) -->
-    <section class="feature reveal" id="assessoria" data-menu="Assessoria">
-        <span class="script-bg" aria-hidden="true">Assessoria</span>
-        <div class="f-media halo">
-            <img class="person" src="diego-2.webp" width="520" height="565" alt="" loading="lazy">
-            <span class="spark" aria-hidden="true"><svg><use href="#star"/></svg></span>
-        </div>
-        <div class="f-body">
-            <h2 class="f-title gold-text">Morar no Paraguai</h2>
-            <span class="f-sign" aria-hidden="true">com o Diego</span>
-            <div class="f-card gloss">Residência, empresa e impostos, planejados pro seu caso. Você fala direto comigo.</div>
+    <section class="panel glass" id="assessoria" data-menu="Assessoria">
+        <h2 class="panel-title gold-text">Morar no Paraguai</h2>
+        <span class="f-sign">com o Diego</span>
+        <p class="panel-text">Residência, empresa e impostos, planejados pro seu caso. Você fala direto comigo.</p>
+        <div class="top-actions">
+            <a class="btn btn-gold shine" data-id="assessoria-site" data-nome="Assessoria (página)" href="https://diretamentedafronteira.com.br/assessoria-imigratoria/" target="_blank" rel="noopener">Quero morar legal no Paraguai</a>
+            <a id="cta-principal" class="btn btn-line" data-id="assessoria-whatsapp" data-nome="Assessoria WhatsApp" href="https://wa.me/595981459106?text=Ol%C3%A1%2C%20Diego!%20Vim%20pelo%20seu%20link.%20Quero%20montar%20minha%20base%20no%20Paraguai%20(resid%C3%AAncia%20%2F%20empresa%20%2F%20impostos).%20Meu%20caso%20%C3%A9%3A%20" target="_blank" rel="noopener">
+                <svg aria-hidden="true"><use href="#wa"/></svg> Contar meu caso
+            </a>
         </div>
     </section>
 
-    <div class="top-actions reveal" style="margin-top:6px;margin-bottom:8px">
-        <a class="btn-gold" data-id="assessoria-site" data-nome="Assessoria (página)" href="https://diretamentedafronteira.com.br/assessoria-imigratoria/" target="_blank" rel="noopener">Quero morar legal no Paraguai</a>
-        <a id="cta-principal" class="btn-gold btn-ghost" data-id="assessoria-whatsapp" data-nome="Assessoria WhatsApp" href="https://wa.me/595981459106?text=Ol%C3%A1%2C%20Diego!%20Vim%20pelo%20seu%20link.%20Quero%20montar%20minha%20base%20no%20Paraguai%20(resid%C3%AAncia%20%2F%20empresa%20%2F%20impostos).%20Meu%20caso%20%C3%A9%3A%20" target="_blank" rel="noopener">
-            <svg aria-hidden="true"><use href="#wa"/></svg> Contar meu caso
+    <!-- GUIAS GRÁTIS -->
+    <h2 class="section-title reveal" id="gratis" data-menu="Grátis"><span class="st gold-text">Guias grátis</span><span class="sub" aria-hidden="true">leia agora</span></h2>
+    <div class="rail reveal-rail" aria-label="Guias grátis">
+        <a class="gcard glass" data-id="gratis-biometria" data-nome="Guia grátis: biometria da mão" href="https://diretamentedafronteira.com.br/ebookmao/" target="_blank" rel="noopener">
+            <span class="gcover"><img src="gratis-biometria.webp" width="400" height="566" alt="" loading="lazy"><b class="badge">Grátis</b></span>
+            <span class="gtitle">A Receita vai ler a sua mão: a biometria na Ponte da Amizade</span>
+            <span class="gmore">Ler <svg aria-hidden="true"><use href="#arrow"/></svg></span>
+        </a>
+        <a class="gcard glass" data-id="gratis-iphone" data-nome="Guia grátis: iPhone no Paraguai" href="https://diretamentedafronteira.com.br/ebookiphone/" target="_blank" rel="noopener">
+            <span class="gcover"><img src="gratis-iphone.webp" width="400" height="566" alt="" loading="lazy"><b class="badge">Grátis</b></span>
+            <span class="gtitle">iPhone no Paraguai: novo, usado ou recondicionado?</span>
+            <span class="gmore">Ler <svg aria-hidden="true"><use href="#arrow"/></svg></span>
+        </a>
+        <a class="gcard glass" data-id="gratis-ponte" data-nome="Guia grátis: Fronteira Inteligente" href="https://diretamentedafronteira.com.br/ebookponte/" target="_blank" rel="noopener">
+            <span class="gcover"><img src="gratis-ponte.webp" width="400" height="566" alt="" loading="lazy"><b class="badge">Grátis</b></span>
+            <span class="gtitle">Fronteira Inteligente: como atravessar a Ponte da Amizade em 2026</span>
+            <span class="gmore">Ler <svg aria-hidden="true"><use href="#arrow"/></svg></span>
         </a>
     </div>
-
-    <!-- GUIAS GRÁTIS -->
-    <h2 class="section-title reveal sec-tight" id="gratis" data-menu="Grátis"><span class="gold-text">Guias grátis</span><i aria-hidden="true">leia agora</i></h2>
-    <div class="guide-list">
-        <a class="guide-link reveal" data-id="gratis-biometria" data-nome="Guia grátis: biometria da mão" href="https://diretamentedafronteira.com.br/ebookmao/" target="_blank" rel="noopener"><span>A Receita vai ler a sua mão: a biometria na Ponte da Amizade</span><em>Grátis</em></a>
-        <a class="guide-link reveal" data-id="gratis-iphone" data-nome="Guia grátis: iPhone no Paraguai" href="https://diretamentedafronteira.com.br/ebookiphone/" target="_blank" rel="noopener"><span>iPhone no Paraguai: novo, usado ou recondicionado?</span><em>Grátis</em></a>
-        <a class="guide-link reveal" data-id="gratis-ponte" data-nome="Guia grátis: Fronteira Inteligente" href="https://diretamentedafronteira.com.br/ebookponte/" target="_blank" rel="noopener"><span>Fronteira Inteligente: como atravessar a Ponte da Amizade em 2026</span><em>Grátis</em></a>
-    </div>
+    <p class="rail-hint" aria-hidden="true">Arraste para ver os 3 <svg viewBox="0 0 24 24"><use href="#arrow"/></svg></p>
 
     <!-- GUIA PAGO (R$ 19,90): fora da lista de grátis de propósito -->
-    <div class="guide-list guide-paid">
-        <a class="guide-link reveal" data-id="guia-morar-pago" data-nome="Guia Morar no Paraguai (R$ 19,90)" href="https://diretamentedafronteira.com.br/guia-paraguai/" target="_blank" rel="noopener"><span>Guia Morar no Paraguai · R$ 19,90</span><em>Ver guia</em></a>
-    </div>
+    <a class="paid glass reveal" data-id="guia-morar-pago" data-nome="Guia Morar no Paraguai (R$ 19,90)" href="https://diretamentedafronteira.com.br/guia-paraguai/" target="_blank" rel="noopener">
+        <span class="paid-bg" aria-hidden="true"><img src="bg-caminhando.webp" width="900" height="1117" alt="" loading="lazy"></span>
+        <span>
+            <span class="paid-name">Guia Morar no Paraguai</span>
+            <span class="paid-price gold-text">R$ 19,90</span>
+        </span>
+        <span class="paid-go">Ver guia <svg aria-hidden="true"><use href="#arrow"/></svg></span>
+    </a>
 
     <!-- REDES EM DESTAQUE (números ao vivo via stats.json - não remover data-network nem #reach-total) -->
     <section id="redes" class="nets-wrap" data-menu="Redes">
-        <h2 class="section-title"><span class="gold-text">Siga nas redes</span><i aria-hidden="true">@diretamentedafronteira</i></h2>
+        <h2 class="section-title reveal"><span class="st gold-text">Siga nas redes</span><span class="sub handle" aria-hidden="true">@diretamentedafronteira</span></h2>
         <div class="nets">
-        <a class="net gloss reveal" href="https://www.instagram.com/diretamentedafronteira" target="_blank" rel="noopener" data-id="seguir-instagram" data-nome="Instagram (seguir)">
-            <span class="net-icon ig" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></span>
-            <div class="proof-number" data-network="instagram" data-target="136300" data-suffix="K">136,3K</div>
+        <a class="net glass reveal" href="https://www.instagram.com/diretamentedafronteira" target="_blank" rel="noopener" data-id="seguir-instagram" data-nome="Instagram (seguir)">
+            <span class="net-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></span>
+            <span class="proof-number count" data-network="instagram" data-target="136282">+120 mil</span>
             <span class="net-label">Instagram</span>
-            <span class="btn-gold btn-sm">Seguir</span>
+            <span class="net-follow">Seguir</span>
         </a>
-        <a class="net gloss reveal" href="https://www.tiktok.com/@diretamentedafronteira" target="_blank" rel="noopener" data-id="seguir-tiktok" data-nome="TikTok (seguir)">
-            <span class="net-icon tt" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.31 6.31 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.27 8.27 0 004.84 1.56V6.79a4.85 4.85 0 01-1.07-.1z"/></svg></span>
-            <div class="proof-number" data-network="tiktok" data-target="62300" data-suffix="K">62,3K</div>
+        <a class="net glass reveal" href="https://www.tiktok.com/@diretamentedafronteira" target="_blank" rel="noopener" data-id="seguir-tiktok" data-nome="TikTok (seguir)">
+            <span class="net-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.31 6.31 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.27 8.27 0 004.84 1.56V6.79a4.85 4.85 0 01-1.07-.1z"/></svg></span>
+            <span class="proof-number count" data-network="tiktok" data-target="62272">+62 mil</span>
             <span class="net-label">TikTok</span>
-            <span class="btn-gold btn-sm">Seguir</span>
+            <span class="net-follow">Seguir</span>
         </a>
-        <a class="net gloss reveal" href="https://www.youtube.com/@diretamentedafronteira" target="_blank" rel="noopener" data-id="seguir-youtube" data-nome="YouTube (seguir)">
-            <span class="net-icon yt" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></span>
-            <div class="proof-number" data-network="youtube" data-target="15000" data-suffix="K">15,0K</div>
+        <a class="net glass reveal" href="https://www.youtube.com/@diretamentedafronteira" target="_blank" rel="noopener" data-id="seguir-youtube" data-nome="YouTube (seguir)">
+            <span class="net-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></span>
+            <span class="proof-number count" data-network="youtube" data-target="15000">+15 mil</span>
             <span class="net-label">YouTube</span>
-            <span class="btn-gold btn-sm">Seguir</span>
+            <span class="net-follow">Seguir</span>
         </a>
         </div>
     </section>
 
-    <!-- AVISO EM DESTAQUE -->
-    <div class="alert gloss reveal" role="note">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="8.5" stroke="currentColor" stroke-width="1.6"/><path d="M10 9v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="10" cy="6.2" r="1" fill="currentColor"/></svg>
+    <!-- AVISO EM DESTAQUE (dourado; vermelho fora da paleta) -->
+    <div class="alert glass reveal" role="note">
+        <svg width="22" height="22" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="8.5" stroke="currentColor" stroke-width="1.6"/><path d="M10 9v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="10" cy="6.2" r="1" fill="currentColor"/></svg>
         <div>
             <p class="alert-title">Eu indico lojas. Não vendo nem envio produtos.</p>
             <p class="alert-text">Preço, compra e entrega são direto com a loja. O que eu ofereço é orientação: a assessoria e os guias.</p>
         </div>
     </div>
 
-    <!-- SORTEIO 100K (temporário: some sozinho depois do sorteio, sáb 31/10/2026 às 11h (adiado de 17/10) - remover o bloco depois) -->
-    <section class="feature reveal" id="sorteio" data-menu="Sorteio">
-        <span class="script-bg" aria-hidden="true">Sorteio</span>
-        <div class="f-media halo">
-            <img src="sorteio-moto.webp?v=20261016" width="1000" height="1250" alt="Moto elétrica 500W do sorteio" loading="lazy" style="width:78%;max-width:300px;height:auto;border-radius:18px;box-shadow:0 14px 34px rgba(0,0,0,.35)">
-            <span class="spark" aria-hidden="true"><svg><use href="#star"/></svg></span>
+    <!-- SORTEIO 100K (temporário: some sozinho depois do sorteio, sáb 31/10/2026 às 11h - remover o bloco depois) -->
+    <section class="feature-card glass reveal" id="sorteio" data-menu="Sorteio">
+        <div class="fc-media">
+            <img src="sorteio-moto.webp?v=20261016" width="1000" height="1250" alt="Moto elétrica 500W do sorteio" loading="lazy" style="object-position:50% 58%">
+            <span class="fc-chip"><svg width="14" height="14" aria-hidden="true"><use href="#star"/></svg>Sáb 31/10 · 11h</span>
         </div>
-        <div class="f-body">
-            <h2 class="f-title gold-text">Sorteio 100K</h2>
-            <span class="f-sign" aria-hidden="true">moto elétrica</span>
-            <div class="f-card gloss">Moto elétrica 500W + 4 camisetas. Sorteio ao vivo sábado, 31/10, às 11h, direto da E-Arax. Grátis.</div>
-            <a class="btn-gold" data-id="sorteio" data-nome="Sorteio moto" href="https://www.diretamentedafronteira.com.br/sorteio/?ref=bio" target="_blank" rel="noopener">Quero meu número</a>
+        <div class="fc-body">
+            <h2 class="fc-title gold-text">Sorteio 100K</h2>
+            <span class="f-sign">moto elétrica</span>
+            <p class="fc-text">Moto elétrica 500W + 4 camisetas. Sorteio ao vivo sábado, 31/10, às 11h, direto da E‑Arax. Grátis.</p>
+            <a class="btn btn-blue" data-id="sorteio" data-nome="Sorteio moto" href="https://www.diretamentedafronteira.com.br/sorteio/?ref=bio" target="_blank" rel="noopener">Quero meu número <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></a>
         </div>
     </section>
-    <script>try{if(Date.now()>Date.parse('2026-10-31T12:00:00-03:00')){var e=document.getElementById('sorteio');e&&e.remove();}}catch(e){}</script>
+    <script>__expira('#sorteio', '2026-10-31T12:00:00-03:00');</script>
 
-    <!-- GUIAS DO PARAGUAI (cupom DESCONTO até 04/10/2026 - depois o JS volta para o preço cheio sozinho) -->
-    <section class="feature rev offer reveal" id="offer" data-menu="Guias">
-        <span class="script-bg" aria-hidden="true">Guias</span>
-        <div class="f-media halo">
-            <div class="fan" aria-label="Capas de 5 dos 11 guias"><img src="guia-1.jpg" width="240" height="320" alt="" loading="lazy"><img src="guia-2.jpg" width="240" height="320" alt="" loading="lazy"><img src="guia-3.jpg" width="240" height="320" alt="" loading="lazy"><img src="guia-4.jpg" width="240" height="320" alt="" loading="lazy"><img src="guia-5.jpg" width="240" height="320" alt="" loading="lazy"></div>
+    <!-- GUIAS DO PARAGUAI (coleção completa, preço cheio; o cupom DESCONTO venceu em 04/10/2026 e saiu) -->
+    <section class="offer glass reveal" id="offer" data-menu="Guias">
+        <div class="fan-stage" aria-label="Capas de 7 dos 11 guias">
+            <img src="capa-comprar-carro.webp" width="400" height="533" alt="" loading="lazy">
+            <img src="capa-imovel.webp" width="400" height="533" alt="" loading="lazy">
+            <img src="capa-empresa-ruc.webp" width="400" height="533" alt="" loading="lazy">
+            <img src="capa-colecao.webp" width="400" height="533" alt="" loading="lazy">
+            <img src="capa-residencia.webp" width="400" height="533" alt="" loading="lazy">
+            <img src="capa-morar-cde.webp" width="400" height="533" alt="" loading="lazy">
+            <img src="capa-comprar-cde.webp" width="400" height="533" alt="" loading="lazy">
             <span class="fan-count">11 GUIAS</span>
-            <span class="spark" aria-hidden="true"><svg><use href="#star"/></svg></span>
         </div>
-        <div class="f-body">
-            <h2 class="f-title gold-text">Guias do Paraguai</h2>
-            <span class="f-sign" aria-hidden="true">coleção</span>
-            <div class="f-card gloss">
-                11 guias em PDF: residência, empresa, carro, imóvel e impostos.
-                <p class="price"><s>R$ 147</s><b id="offer-valor">R$ 97</b><small> com o cupom</small></p>
-            </div>
-            <a id="offer-link" class="btn-gold" data-id="guias-pagos" data-nome="Guias do Paraguai" href="https://fronteiraplay.com/colecao.php" target="_blank" rel="noopener">Quero os guias</a>
-            <button type="button" class="coupon" id="copiar-cupom" aria-label="Copiar cupom DESCONTO">
-                <code>DESCONTO</code> · <span class="copy">Copiar</span>
-            </button>
+        <div class="fc-body">
+            <h2 class="fc-title gold-text">Guias do Paraguai</h2>
+            <span class="f-sign">coleção</span>
+            <p class="fc-text">11 guias em PDF: residência, empresa, carro, imóvel e impostos.</p>
+            <p class="price"><b class="gold-text">R$ 147</b><small>coleção completa</small></p>
+            <a id="offer-link" class="btn btn-blue" data-id="guias-pagos" data-nome="Guias do Paraguai" href="https://fronteiraplay.com/colecao.php" target="_blank" rel="noopener">Quero os guias <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></a>
         </div>
     </section>
 
-    <!-- MUTIRÃO 2026 -->
-    <section class="feature reveal" id="mutirao-bloco" data-menu="Mutirão">
-        <span class="script-bg" aria-hidden="true">Mutirão</span>
-        <div class="f-media halo">
-            <img class="person" src="diego-hero.webp" width="720" height="782" alt="" loading="lazy">
-            <span class="spark" aria-hidden="true"><svg><use href="#star"/></svg></span>
+    <!-- MUTIRÃO 2026 (temporário: some sozinho depois de 26/10/2026 23h59, junto com a folha e o item do menu) -->
+    <section class="feature-card mutirao glass reveal" id="mutirao-bloco" data-menu="Mutirão">
+        <div class="fc-media">
+            <img src="bg-ponte-noite.webp" width="900" height="1117" alt="Ponte da Amizade ao entardecer" loading="lazy" style="object-position:50% 40%">
         </div>
-        <div class="f-body">
-            <h2 class="f-title gold-text">Mutirão 2026</h2>
-            <span class="f-sign" aria-hidden="true">o guia</span>
-            <div class="f-card gloss">Chegue ao Mutirão com todos os documentos certos.</div>
-            <button type="button" class="btn-gold" id="abrir-mutirao" data-id="mutirao-abrir" aria-haspopup="dialog" aria-controls="mutirao">Ver o guia</button>
+        <div class="fc-body">
+            <h2 class="fc-title gold-text">Mutirão 2026</h2>
+            <span class="f-sign">o guia</span>
+            <p class="fc-text">Chegue ao Mutirão com todos os documentos certos.</p>
+            <button type="button" class="btn btn-blue" id="abrir-mutirao" data-id="mutirao-abrir" aria-haspopup="dialog" aria-controls="mutirao">Ver o guia <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></button>
         </div>
     </section>
+    <script>__expira('#mutirao-bloco', '2026-10-26T23:59:59-03:00');</script>
 
     <!-- MAIS DO DIEGO -->
-    <h2 class="section-title reveal" id="mais" data-menu="Mais"><span class="gold-text">Mais do Diego</span><i aria-hidden="true">conteúdo</i></h2>
+    <h2 class="section-title reveal" id="mais" data-menu="Mais"><span class="st gold-text">Mais do Diego</span><span class="sub" aria-hidden="true">conteúdo</span></h2>
     <div class="list">
-        <a class="btn-gold reveal" data-id="blog" data-nome="Blog" href="https://blog.diretamentedafronteira.com.br/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:#1A1204;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg> Ler o blog</a>
-        <a class="btn-gold reveal" data-id="kast" data-nome="Kast (código PARAGUAI)" href="https://app.kast.xyz/referral/PARAGUAI" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:#1A1204;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20"/><path d="M6 15h4"/></svg> Conta Kast · código PARAGUAI</a>
-        <p class="list-note">Kast: conta em dólar com cartão. Use o código <strong>PARAGUAI</strong> ao abrir.</p>
+        <a class="row glass reveal" data-id="blog" data-nome="Blog" href="https://blog.diretamentedafronteira.com.br/" target="_blank" rel="noopener">
+            <span class="row-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span>
+            <span class="row-text"><span class="link-title">Ler o blog</span></span>
+            <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+        </a>
+        <a class="row glass reveal" data-id="kast" data-nome="Kast (código PARAGUAI)" href="https://app.kast.xyz/referral/PARAGUAI" target="_blank" rel="noopener">
+            <span class="row-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20"/><path d="M6 15h4"/></svg></span>
+            <span class="row-text"><span class="link-title">Conta Kast · código PARAGUAI</span></span>
+            <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+        </a>
+        <p class="list-note reveal">Kast: conta em dólar com cartão. Use o código <strong>PARAGUAI</strong> ao abrir.</p>
     </div>
 
-
-
-    <footer class="footer"><strong>Não vendo nem envio mercadorias</strong>: só divulgo lojas.<br>© 2026 Diretamente da Fronteira · Assessoria de imigração para o Paraguai</footer>
+    <footer class="footer"><img src="logo-ddf.webp" width="280" height="280" alt="Diretamente da Fronteira" loading="lazy"><strong>Não vendo nem envio mercadorias</strong>: só divulgo lojas.<br>© 2026 Diretamente da Fronteira · Assessoria de imigração para o Paraguai</footer>
 
 </main>
 
 <!-- BARRA FIXA: aparece quando o botão da assessoria sai da tela -->
 <div class="dock" id="dock" aria-hidden="true">
-    <a class="btn-gold" data-id="dock-whatsapp" href="https://wa.me/595981459106?text=Ol%C3%A1%2C%20Diego!%20Vim%20pelo%20seu%20link.%20Quero%20montar%20minha%20base%20no%20Paraguai%20(resid%C3%AAncia%20%2F%20empresa%20%2F%20impostos).%20Meu%20caso%20%C3%A9%3A%20" target="_blank" rel="noopener" tabindex="-1" data-nome="Assessoria WhatsApp (barra fixa)">
+    <a class="btn btn-gold shine" data-id="dock-whatsapp" href="https://wa.me/595981459106?text=Ol%C3%A1%2C%20Diego!%20Vim%20pelo%20seu%20link.%20Quero%20montar%20minha%20base%20no%20Paraguai%20(resid%C3%AAncia%20%2F%20empresa%20%2F%20impostos).%20Meu%20caso%20%C3%A9%3A%20" target="_blank" rel="noopener" tabindex="-1" data-nome="Assessoria WhatsApp (barra fixa)">
         <svg aria-hidden="true"><use href="#wa"/></svg> Falar com o Diego sobre meu caso
     </a>
 </div>
@@ -672,41 +811,94 @@
         <h2 class="sheet-title" id="mutirao-titulo">Chegue ao Mutirão com tudo em mãos</h2>
         <p class="sheet-intro">Um guia prático para o Mutirão Migramóvel: o que levar, o que validar antes e em que ordem preparar cada documento.</p>
         <ul class="sheet-list">
-            <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="9" fill="#F6EDD5"/><path d="M5 9l3 3 5-5" stroke="#8A6214" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Datas informadas dos mutirões</span></li>
-            <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="9" fill="#F6EDD5"/><path d="M5 9l3 3 5-5" stroke="#8A6214" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Lista de documentos brasileiros exigidos</span></li>
-            <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="9" fill="#F6EDD5"/><path d="M5 9l3 3 5-5" stroke="#8A6214" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Orientação sobre Apostila de Haia</span></li>
-            <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="9" fill="#F6EDD5"/><path d="M5 9l3 3 5-5" stroke="#8A6214" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Validade de documentos e antecedentes</span></li>
-            <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="9" fill="#F6EDD5"/><path d="M5 9l3 3 5-5" stroke="#8A6214" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Exigência da vacina de febre amarela impressa</span></li>
-            <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="9" fill="#F6EDD5"/><path d="M5 9l3 3 5-5" stroke="#8A6214" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Valor médio das taxas (pagamento em guaranis)</span></li>
-            <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="9" fill="#F6EDD5"/><path d="M5 9l3 3 5-5" stroke="#8A6214" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Cópias autenticadas em cartório paraguaio</span></li>
-            <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="9" fill="#F6EDD5"/><path d="M5 9l3 3 5-5" stroke="#8A6214" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Polícia Nacional e Interpol</span></li>
-            <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="9" fill="#F6EDD5"/><path d="M5 9l3 3 5-5" stroke="#8A6214" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Diferença entre Mercosul e Nova Lei</span></li>
-            <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="9" fill="#F6EDD5"/><path d="M5 9l3 3 5-5" stroke="#8A6214" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Cronograma ideal de preparação</span></li>
-            <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="9" fill="#F6EDD5"/><path d="M5 9l3 3 5-5" stroke="#8A6214" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Checklist final do que levar no dia</span></li>
+            <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="9" fill="#D4A44C"/><path d="M5 9l3 3 5-5" stroke="#0B1630" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Datas informadas dos mutirões</span></li>
+            <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="9" fill="#D4A44C"/><path d="M5 9l3 3 5-5" stroke="#0B1630" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Lista de documentos brasileiros exigidos</span></li>
+            <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="9" fill="#D4A44C"/><path d="M5 9l3 3 5-5" stroke="#0B1630" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Orientação sobre Apostila de Haia</span></li>
+            <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="9" fill="#D4A44C"/><path d="M5 9l3 3 5-5" stroke="#0B1630" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Validade de documentos e antecedentes</span></li>
+            <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="9" fill="#D4A44C"/><path d="M5 9l3 3 5-5" stroke="#0B1630" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Exigência da vacina de febre amarela impressa</span></li>
+            <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="9" fill="#D4A44C"/><path d="M5 9l3 3 5-5" stroke="#0B1630" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Valor médio das taxas (pagamento em guaranis)</span></li>
+            <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="9" fill="#D4A44C"/><path d="M5 9l3 3 5-5" stroke="#0B1630" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Cópias autenticadas em cartório paraguaio</span></li>
+            <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="9" fill="#D4A44C"/><path d="M5 9l3 3 5-5" stroke="#0B1630" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Polícia Nacional e Interpol</span></li>
+            <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="9" fill="#D4A44C"/><path d="M5 9l3 3 5-5" stroke="#0B1630" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Diferença entre Mercosul e Nova Lei</span></li>
+            <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="9" fill="#D4A44C"/><path d="M5 9l3 3 5-5" stroke="#0B1630" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Cronograma ideal de preparação</span></li>
+            <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="9" fill="#D4A44C"/><path d="M5 9l3 3 5-5" stroke="#0B1630" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Checklist final do que levar no dia</span></li>
         </ul>
-        <a class="btn-gold" data-id="mutirao-comprar" data-nome="Guia do Mutirão (comprar)" href="https://pay.kiwify.com.br/VIIpXYB" target="_blank" rel="noopener">Quero o guia do Mutirão</a>
+        <a class="btn btn-blue" data-id="mutirao-comprar" data-nome="Guia do Mutirão (comprar)" href="https://pay.kiwify.com.br/VIIpXYB" target="_blank" rel="noopener">Quero o guia do Mutirão</a>
     </div>
 </div>
+
+<script>__expira('#mutirao', '2026-10-26T23:59:59-03:00');</script>
 
 <script>
     /* ── NÚMEROS AO VIVO ──
        stats.json é atualizado todo dia por uma rotina automática
-       (Windsor.ai → GitHub). Se falhar, ficam os números fixos acima. */
+       (Windsor.ai → GitHub). Se falhar, ficam os números fixos acima.
+       Formato: "+120 mil" (2 algarismos significativos, sempre para baixo)
+       e NUNCA com 13: se aparecer, desce até sumir (130 → 120). Mesma regra do update_stats.py. */
     var STATS_URL = 'https://scrincwb.github.io/links/stats.json';
-    function fmtK(n) {
-        return (n / 1000).toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + 'K';
+    function tem13(s) { return String(s).replace(/\D/g, '').indexOf('13') !== -1; }
+    function dec(v) { return (Math.round(v * 10) / 10).toFixed(1).replace(/\.0$/, '').replace('.', ','); }
+    function fmtSeg(n) {
+        n = Math.floor(n);
+        var v, step, unit;
+        if (n >= 1e6) {
+            v = Math.floor(n / 1e5) / 10; step = 0.1;
+            if (v >= 5) { v = Math.floor(v); step = 1; }
+            unit = function (x) { return x < 2 ? ' milhão' : ' milhões'; };
+        } else if (n >= 1000) {
+            var k = n / 1000;
+            if (k >= 100) { v = Math.floor(k / 10) * 10; step = 10; }
+            else if (k >= 10) { v = Math.floor(k); step = 1; }
+            else { v = Math.floor(k * 10) / 10; step = 0.1; }
+            unit = function () { return ' mil'; };
+        } else {
+            v = n; step = 1; unit = function () { return ''; };
+        }
+        while (v > 0 && tem13(dec(v))) v = Math.round((v - step) * 10) / 10;
+        return '+' + dec(v) + unit(v);
+    }
+    window.__fmtSeg = fmtSeg;
+
+    /* contador: anima a parte numérica até o texto final (data-final), pulando qualquer quadro com 13 */
+    var reduz = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function finalDe(el) { return el.getAttribute('data-final') || el.textContent; }
+    function contar(el) {
+        if (el.__contou) return;
+        el.__contou = true;
+        if (!el.getAttribute('data-final')) el.setAttribute('data-final', el.textContent);
+        var m = /^(\+?)(\d+(?:,\d)?)(.*)$/.exec(finalDe(el));
+        if (reduz || !m || !window.requestAnimationFrame) { el.textContent = finalDe(el); return; }
+        var alvo = parseFloat(m[2].replace(',', '.')), casas = m[2].indexOf(',') > -1 ? 1 : 0;
+        var t0 = null, dur = 1400;
+        el.__animando = true;
+        function quadro(t) {
+            if (t0 === null) t0 = t;
+            var p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+            var mm = /^(\+?)(\d+(?:,\d)?)(.*)$/.exec(finalDe(el)) || m;
+            alvo = parseFloat(mm[2].replace(',', '.'));
+            var s = mm[1] + (alvo * e).toFixed(casas).replace('.', ',') + mm[3];
+            if (!tem13(s)) el.textContent = s;
+            if (p < 1) requestAnimationFrame(quadro);
+            else { el.textContent = finalDe(el); el.__animando = false; }
+        }
+        el.textContent = m[1] + (0).toFixed(casas).replace('.', ',') + m[3];
+        requestAnimationFrame(quadro);
+    }
+    function definir(el, txt) {
+        el.setAttribute('data-final', txt);
+        if (!el.__animando) el.textContent = txt;
     }
     function applyStats(s) {
         var total = 0;
         document.querySelectorAll('.proof-number[data-network]').forEach(function (el) {
             var n = s[el.getAttribute('data-network')];
             if (typeof n === 'number' && n > 0) {
-                el.textContent = fmtK(n);
+                definir(el, fmtSeg(n));
                 total += n;
             }
         });
         var t = document.getElementById('reach-total');
-        if (t && total > 0) t.textContent = '+' + Math.floor(total / 1000) + ' mil seguidores';
+        if (t && total > 0) definir(t, fmtSeg(total) + ' seguidores');
     }
     try {
         fetch(STATS_URL, { cache: 'no-cache' })
@@ -714,41 +906,6 @@
             .then(function (s) { if (s) applyStats(s); })
             .catch(function () {});
     } catch (e) {}
-
-    /* ── CUPOM: vale até 04/10/2026 23:59 (horário do Paraguai, UTC-3).
-       Depois disso a oferta volta sozinha para o preço cheio, sem cupom. ── */
-    (function () {
-        var FIM = new Date('2026-10-05T00:00:00-03:00').getTime();
-        var offer = document.getElementById('offer');
-        if (Date.now() >= FIM) {
-            offer.classList.add('expired');
-            document.getElementById('offer-valor').textContent = 'R$ 147';
-            document.getElementById('offer-link').href = 'https://fronteiraplay.com/colecao.php';
-            return;
-        }
-        var dias = Math.ceil((FIM - Date.now()) / 86400000);
-        document.getElementById('offer-note').textContent =
-            'Para os 10 primeiros · ' + (dias <= 1 ? 'termina hoje' : 'termina em ' + dias + ' dias');
-
-        var btn = document.getElementById('copiar-cupom');
-        var label = btn.querySelector('.copy');
-        btn.addEventListener('click', function () {
-            function ok() {
-                label.textContent = 'Copiado ✓';
-                setTimeout(function () { label.textContent = 'Copiar'; }, 2000);
-            }
-            if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText('DESCONTO').then(ok, ok);
-            } else {
-                var ta = document.createElement('textarea');
-                ta.value = 'DESCONTO'; ta.setAttribute('readonly', '');
-                ta.style.position = 'fixed'; ta.style.opacity = '0';
-                document.body.appendChild(ta); ta.select();
-                try { document.execCommand('copy'); } catch (e) {}
-                document.body.removeChild(ta); ok();
-            }
-        });
-    })();
 
     /* ── BARRA FIXA DO WHATSAPP ── */
     (function () {
@@ -759,7 +916,7 @@
         function atualizar() {
             var h = window.innerHeight;
             var ctaFora = cta.getBoundingClientRect().bottom < 0;
-            var rodapeVisivel = footer.getBoundingClientRect().top < h;
+            var rodapeVisivel = footer.getBoundingClientRect().top < h + 110; // some antes de cobrir o último cartão
             var mostrar = ctaFora && !rodapeVisivel;
             if (mostrar === mostrando) return;
             mostrando = mostrar;
@@ -772,11 +929,12 @@
         atualizar();
     })();
 
-    /* ── FOLHA DO MUTIRÃO ── */
+    /* ── FOLHA DO MUTIRÃO (some junto com o bloco depois do prazo) ── */
     (function () {
         var overlay = document.getElementById('mutirao');
-        var sheet = overlay.querySelector('.sheet');
         var abrir = document.getElementById('abrir-mutirao');
+        if (!overlay || !abrir) return;
+        var sheet = overlay.querySelector('.sheet');
         var aberto = false;
 
         function open() {
@@ -867,25 +1025,25 @@
         onScroll();
     })();
 
-    /* ── blocos surgem ao rolar ── */
+    /* ── blocos surgem ao rolar + números contam ao entrar na tela ── */
     (function () {
-        var els = [].slice.call(document.querySelectorAll('.reveal'));
-        function checar() {
-            var h = window.innerHeight;
-            els = els.filter(function (el) {
-                if (el.getBoundingClientRect().top < h * 0.92) { el.classList.add('in'); return false; }
-                return true;
-            });
-            if (!els.length) removeEventListener('scroll', checar);
+        var els = [].slice.call(document.querySelectorAll('.reveal, .reveal-rail, .count'));
+        function ativar(el) {
+            if (el.classList.contains('count')) contar(el);
+            else el.classList.add('in');
         }
-        addEventListener('scroll', checar, { passive: true });
-        addEventListener('resize', checar);
-        checar();
+        if (!('IntersectionObserver' in window)) { els.forEach(ativar); return; }
+        var io = new IntersectionObserver(function (entradas) {
+            entradas.forEach(function (en) {
+                if (en.isIntersecting) { ativar(en.target); io.unobserve(en.target); }
+            });
+        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.01 });
+        els.forEach(function (el) { io.observe(el); });
     })();
 </script>
 <!-- RASTREAMENTO DE ORIGEM: ?src=ig|tt|yt|site (qualquer outro valor ou ausência = bio).
      Bios: Instagram /links/?src=ig · TikTok /links/?src=tt · YouTube /links/?src=yt
-     Aplica UTM nos links de saída (site, fronteiraplay, kiwify, kast), acrescenta [IG]/[TT]/[YT]/[SITE]/[BIO]
+     Aplica UTM nos links de saída (site, fronteiraplay, kiwify, kast, paraguainamao), acrescenta [IG]/[TT]/[YT]/[SITE]/[BIO]
      ao fim da mensagem do WhatsApp, e dispara GA4 (select_content, click, generate_lead). -->
 <script>
 (function () {
@@ -900,7 +1058,7 @@
     } catch (e) {}
     window.__bioSrc = src;
     var TAG = ' [' + src.toUpperCase() + ']';
-    var HOSTS = /(^|\.)(diretamentedafronteira\.com\.br|fronteiraplay\.com|kiwify\.com\.br|kast\.xyz)$/;
+    var HOSTS = /(^|\.)(diretamentedafronteira\.com\.br|fronteiraplay\.com|kiwify\.com\.br|kast\.xyz|paraguainamao\.com)$/;
 
     function slug(t) { return (t || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40); }
     function idOf(el) { return el.getAttribute('data-id') || slug(el.getAttribute('data-nome') || el.textContent); }
