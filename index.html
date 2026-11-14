@@ -20,8 +20,8 @@
     <!-- GA4: mesma tag (GT-KT9N4QRZ) do site principal -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=GT-KT9N4QRZ"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','GT-KT9N4QRZ');</script>
-    <!-- blocos temporários: some sozinho depois da data (Mutirão, Sorteio) -->
-    <script>window.__expira=function(sel,quando){try{if(Date.now()>Date.parse(quando)){[].forEach.call(document.querySelectorAll(sel),function(e){e.parentNode&&e.parentNode.removeChild(e);});}}catch(e){}};</script>
+    <!-- navegador do Instagram/TikTok/Facebook: sem animação de entrada (evita blocos em branco) -->
+    <script>try{if(/Instagram|FBAN|FBAV|FB_IAB|musical_ly|TikTok|Bytedance|Snapchat|Line\//i.test(navigator.userAgent))document.documentElement.className=document.documentElement.className.replace(/\bjs\b/,'no-js');}catch(e){}</script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -434,34 +434,33 @@
         .alert-title { font-size: 17px; font-weight: 800; line-height: 1.35; color: #FFFFFF; }
         .alert-text { font-size: 16px; color: var(--soft); line-height: 1.5; margin-top: 4px; }
 
-        /* ── CARTÕES GRANDES (Sorteio, Mutirão) ── */
-        .feature-card { margin-top: 64px; overflow: hidden; padding: 0; text-align: center; }
-        .feature-card .fc-media { position: relative; height: 240px; overflow: hidden; border-radius: 22px 22px 0 0; }
-        .feature-card .fc-media img {
-            width: 100%; height: 100%; object-fit: cover;
-            -webkit-mask-image: linear-gradient(180deg, #000 45%, rgba(0, 0, 0, 0.35) 80%, transparent 100%);
-                    mask-image: linear-gradient(180deg, #000 45%, rgba(0, 0, 0, 0.35) 80%, transparent 100%);
-        }
-        .fc-chip {
-            position: absolute; z-index: 1; top: 14px; left: 14px;
-            display: inline-flex; align-items: center; gap: 7px;
-            padding: 7px 11px; border-radius: 999px;
-            background: rgba(11, 22, 48, 0.78); border: 1px solid var(--line);
-            -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
-            font-size: 13px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-soft);
-        }
-        .fc-body { position: relative; padding: 0 18px 20px; margin-top: -44px; }
+
+        /* ── COLEÇÃO: leque de capas ── */
+        .guias { margin-top: 14px; padding: 18px 14px 20px; text-align: center; overflow: hidden; scroll-margin-top: 74px; }
         .fc-title {
             font-family: var(--display); font-weight: 400; text-transform: uppercase;
             font-size: clamp(40px, 12.5vw, 50px); line-height: 0.98; letter-spacing: 0.015em;
-            filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.7));
         }
-        .fc-text { margin: 10px auto 16px; max-width: 340px; font-size: 16px; line-height: 1.5; color: var(--soft); }
-        .feature-card.mutirao .fc-media { height: 200px; }
-
-        /* ── COLEÇÃO: leque de capas ── */
-        .offer { margin-top: 64px; padding: 0 0 20px; text-align: center; overflow: hidden; }
-        .fan-stage { position: relative; height: 262px; margin-top: 4px; }
+        .fc-text { margin: 10px auto 14px; max-width: 340px; font-size: 16px; line-height: 1.5; color: var(--soft); }
+        .g-kicker { display: block; margin: 20px 0 0; font-size: 14px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-hi); text-align: left; }
+        .guias .paid { margin-top: 8px; }
+        .guias-colecao { margin-top: 22px; padding-top: 4px; border-top: 1px solid rgba(232, 199, 122, 0.22); }
+        .guias-colecao .g-kicker { text-align: center; margin-top: 16px; }
+        .guias-strip {
+            display: flex; align-items: center; justify-content: space-between; gap: 12px;
+            margin-top: 14px; padding: 9px 10px 9px 16px; text-align: left;
+        }
+        .gs-name { display: block; text-wrap: balance; font-size: 16px; font-weight: 800; line-height: 1.3; color: #FFFFFF; }
+        .gs-sub { display: block; margin-top: 1px; font-size: 15px; font-weight: 700; line-height: 1.3; color: var(--gold-soft); }
+        .gs-go {
+            display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0;
+            padding: 11px 14px; border-radius: 12px;
+            border: 1.5px solid rgba(232, 199, 122, 0.8); background: rgba(11, 22, 48, 0.55);
+            font-size: 14px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-soft);
+            white-space: nowrap;
+        }
+        .gs-go svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+        .fan-stage { position: relative; height: 262px; margin-top: 2px; }
         .fan-stage::before {
             content: ''; position: absolute; left: 50%; top: 58%; width: 300px; height: 300px; transform: translate(-50%, -50%);
             border-radius: 50%;
@@ -495,7 +494,7 @@
             font-family: var(--display); font-size: 22px; letter-spacing: 0.06em;
             box-shadow: 0 10px 24px -8px rgba(0, 0, 0, 0.9);
         }
-        .offer .fc-body { margin-top: 18px; }
+        .guias-colecao .fc-body { margin-top: 14px; }
         .price { display: flex; align-items: baseline; justify-content: center; gap: 8px; margin: -4px 0 16px; }
         .price b { font-family: var(--display); font-weight: 400; font-size: 46px; line-height: 1; letter-spacing: 0.01em; }
         .price small { font-size: 15px; font-weight: 700; color: var(--soft); }
@@ -535,38 +534,6 @@
         .dock.show { transform: translateY(0); pointer-events: auto; }
         .dock .btn { max-width: 448px; margin: 0 auto; text-transform: none; letter-spacing: 0; font-size: clamp(15px, 4.2vw, 17px); }
 
-        /* ── FOLHA DO MUTIRÃO ── */
-        .sheet-overlay {
-            position: fixed; inset: 0; z-index: 200;
-            display: flex; align-items: flex-end; justify-content: center;
-            background: rgba(5, 10, 24, 0.62);
-            -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
-            opacity: 0; visibility: hidden;
-            transition: opacity 0.25s, visibility 0.25s;
-        }
-        .sheet-overlay.open { opacity: 1; visibility: visible; }
-        .sheet {
-            width: 100%; max-width: 480px;
-            max-height: 90vh; max-height: 90dvh; overflow-y: auto;
-            background: linear-gradient(180deg, #1A2D5A 0%, #13234A 40%, #0E1B3A 100%);
-            border: 1px solid var(--line); border-bottom: 0;
-            border-radius: 26px 26px 0 0;
-            box-shadow: 0 -16px 50px -10px rgba(0, 0, 0, 0.7);
-            padding: 12px 22px calc(28px + env(safe-area-inset-bottom));
-            transform: translateY(100%);
-            transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
-            position: relative;
-            -webkit-overflow-scrolling: touch;
-        }
-        .sheet-overlay.open .sheet { transform: translateY(0); }
-        .sheet-handle { width: 42px; height: 4px; border-radius: 2px; background: rgba(255, 255, 255, 0.25); margin: 0 auto 18px; }
-        .sheet-close { position: absolute; top: 14px; right: 14px; width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.08); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; color: var(--gold-soft); }
-        .sheet-kicker { font-size: 13px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold-hi); }
-        .sheet-title { font-family: var(--display); font-weight: 400; text-transform: uppercase; font-size: 36px; line-height: 1.14; margin-top: 8px; padding-right: 40px; color: #FFFFFF; }
-        .sheet-intro { font-size: 16px; line-height: 1.6; color: var(--soft); margin-top: 10px; }
-        .sheet-list { list-style: none; margin: 20px 0 24px; padding-top: 18px; border-top: 1px solid rgba(232, 199, 122, 0.2); display: grid; gap: 12px; }
-        .sheet-list li { display: flex; gap: 10px; font-size: 16px; line-height: 1.45; color: #EEF1F7; }
-        .sheet-list svg { flex-shrink: 0; margin-top: 2px; }
 
         /* ── entrada ao rolar ── */
         .js .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.8s var(--ease); }
@@ -582,6 +549,8 @@
             .net .proof-number { font-size: 24px; }
             .net-follow { padding: 8px 10px; letter-spacing: 0.06em; }
             .paid-price { font-size: 34px; }
+            .gs-go { padding: 11px 11px; letter-spacing: 0.05em; }
+            .guias-strip { padding-left: 12px; gap: 8px; }
             .btn { font-size: 14px; letter-spacing: 0.04em; }
         }
 
@@ -612,14 +581,12 @@
     <div class="topnav-track" id="topnav-track">
         <span class="topnav-ind" id="topnav-ind" aria-hidden="true"></span>
         <a href="#assessoria">Assessoria</a>
-        <a href="#redes">Redes</a>
-        <a href="#gratis">Grátis</a>
         <a href="#offer">Guias</a>
-        <a href="#mutirao-bloco">Mutirão</a>
+        <a href="#gratis">Grátis</a>
+        <a href="#redes">Redes</a>
         <a href="#mais">Mais</a>
     </div>
 </nav>
-<script>__expira('a[href="#mutirao-bloco"]', '2026-10-26T23:59:59-03:00');</script>
 
 <main class="page" id="topo">
 
@@ -645,6 +612,15 @@
         </div>
     </header>
 
+    <!-- SEGUNDO CAMINHO NA 1ª TELA: guias em PDF (rola até o bloco de guias) -->
+    <a class="guias-strip glass" href="#offer" data-id="guias-ancora" data-nome="Guias em PDF (ver guias)">
+        <span>
+            <span class="gs-name">Guias do Paraguai em PDF</span>
+            <span class="gs-sub">a partir de R$ 9,90</span>
+        </span>
+        <span class="gs-go">Ver guias <svg aria-hidden="true"><use href="#arrow"/></svg></span>
+    </a>
+
     <!-- ASSESSORIA (ação principal, logo abaixo da capa) -->
     <section class="panel glass" id="assessoria" data-menu="Assessoria">
         <h2 class="panel-title gold-text">Morar no Paraguai</h2>
@@ -655,6 +631,42 @@
             <a id="cta-principal" class="btn btn-line" data-id="assessoria-whatsapp" data-nome="Assessoria WhatsApp" href="https://wa.me/595991233424?text=Ol%C3%A1%2C%20Diego!%20Vim%20pelo%20seu%20link.%20Quero%20montar%20minha%20base%20no%20Paraguai%20(resid%C3%AAncia%20%2F%20empresa%20%2F%20impostos).%20Meu%20caso%20%C3%A9%3A%20" target="_blank" rel="noopener">
                 <svg aria-hidden="true"><use href="#wa"/></svg> Contar meu caso
             </a>
+        </div>
+    </section>
+
+
+    <!-- GUIAS DO PARAGUAI (pagos): guia avulso de entrada + coleção. Sem .reveal: já nasce visível. Preço/contagem conferidos em fronteiraplay.com/api/colecao.php (14/11/2026) -->
+    <section class="guias in glass" id="offer" data-menu="Guias">
+        <h2 class="fc-title gold-text">Guias do Paraguai</h2>
+        <span class="f-sign">em PDF</span>
+
+        <span class="g-kicker">Guia avulso · para começar</span>
+        <a class="paid glass" data-id="guia-morar-pago" data-nome="Guia Morar no Paraguai (R$ 19,90)" href="https://fronteiraplay.com/ebook.php?slug=morar-no-paraguai" target="_blank" rel="noopener">
+            <span class="paid-bg" aria-hidden="true"><img src="bg-caminhando.webp" width="900" height="1117" alt="" loading="lazy"></span>
+            <span>
+                <span class="paid-name">Guia Morar no Paraguai</span>
+                <span class="paid-price gold-text">R$ 19,90</span>
+            </span>
+            <span class="paid-go">Ver guia <svg aria-hidden="true"><use href="#arrow"/></svg></span>
+        </a>
+
+        <div class="guias-colecao">
+            <span class="g-kicker">Coleção completa · 12 guias</span>
+            <div class="fan-stage" aria-label="Capas de 7 dos 12 guias">
+                <img src="capa-comprar-carro.webp" width="400" height="533" alt="" loading="lazy">
+                <img src="capa-imovel.webp" width="400" height="533" alt="" loading="lazy">
+                <img src="capa-empresa-ruc.webp" width="400" height="533" alt="" loading="lazy">
+                <img src="capa-colecao.webp?v=20261114" width="400" height="533" alt="" loading="lazy">
+                <img src="capa-residencia.webp" width="400" height="533" alt="" loading="lazy">
+                <img src="capa-morar-cde.webp" width="400" height="533" alt="" loading="lazy">
+                <img src="capa-comprar-cde.webp" width="400" height="533" alt="" loading="lazy">
+                <span class="fan-count">12 GUIAS</span>
+            </div>
+            <div class="fc-body">
+                <p class="fc-text">Os 12 guias em PDF juntos: residência, empresa, carro, imóvel e impostos.</p>
+                <p class="price"><b class="gold-text">R$ 147</b><small>coleção completa</small></p>
+                <a id="offer-link" class="btn btn-blue" data-id="guias-pagos" data-nome="Guias do Paraguai" href="https://fronteiraplay.com/colecao.php" target="_blank" rel="noopener">Quero a coleção <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></a>
+            </div>
         </div>
     </section>
 
@@ -678,16 +690,6 @@
         </a>
     </div>
     <p class="rail-hint" aria-hidden="true">Arraste para ver os 3 <svg viewBox="0 0 24 24"><use href="#arrow"/></svg></p>
-
-    <!-- GUIA PAGO (R$ 19,90): fora da lista de grátis de propósito -->
-    <a class="paid glass reveal" data-id="guia-morar-pago" data-nome="Guia Morar no Paraguai (R$ 19,90)" href="https://diretamentedafronteira.com.br/guia-paraguai/" target="_blank" rel="noopener">
-        <span class="paid-bg" aria-hidden="true"><img src="bg-caminhando.webp" width="900" height="1117" alt="" loading="lazy"></span>
-        <span>
-            <span class="paid-name">Guia Morar no Paraguai</span>
-            <span class="paid-price gold-text">R$ 19,90</span>
-        </span>
-        <span class="paid-go">Ver guia <svg aria-hidden="true"><use href="#arrow"/></svg></span>
-    </a>
 
     <!-- REDES EM DESTAQUE (números ao vivo via stats.json - não remover data-network nem #reach-total) -->
     <section id="redes" class="nets-wrap" data-menu="Redes">
@@ -723,56 +725,9 @@
         </div>
     </div>
 
-    <!-- SORTEIO 100K (temporário: some sozinho depois do sorteio, sáb 31/10/2026 às 11h - remover o bloco depois) -->
-    <section class="feature-card glass reveal" id="sorteio" data-menu="Sorteio">
-        <div class="fc-media">
-            <img src="sorteio-moto.webp?v=20261016" width="1000" height="1250" alt="Moto elétrica 500W do sorteio" loading="lazy" style="object-position:50% 58%">
-            <span class="fc-chip"><svg width="14" height="14" aria-hidden="true"><use href="#star"/></svg>Sáb 31/10 · 11h</span>
-        </div>
-        <div class="fc-body">
-            <h2 class="fc-title gold-text">Sorteio 100K</h2>
-            <span class="f-sign">moto elétrica</span>
-            <p class="fc-text">Moto elétrica 500W + 4 camisetas. Sorteio ao vivo sábado, 31/10, às 11h, direto da E‑Arax. Grátis.</p>
-            <a class="btn btn-blue" data-id="sorteio" data-nome="Sorteio moto" href="https://www.diretamentedafronteira.com.br/sorteio/?ref=bio" target="_blank" rel="noopener">Quero meu número <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></a>
-        </div>
-    </section>
-    <script>__expira('#sorteio', '2026-10-31T12:00:00-03:00');</script>
+    
 
-    <!-- GUIAS DO PARAGUAI (coleção completa, preço cheio; o cupom DESCONTO venceu em 04/10/2026 e saiu) -->
-    <section class="offer glass reveal" id="offer" data-menu="Guias">
-        <div class="fan-stage" aria-label="Capas de 7 dos 12 guias">
-            <img src="capa-comprar-carro.webp" width="400" height="533" alt="" loading="lazy">
-            <img src="capa-imovel.webp" width="400" height="533" alt="" loading="lazy">
-            <img src="capa-empresa-ruc.webp" width="400" height="533" alt="" loading="lazy">
-            <img src="capa-colecao.webp" width="400" height="533" alt="" loading="lazy">
-            <img src="capa-residencia.webp" width="400" height="533" alt="" loading="lazy">
-            <img src="capa-morar-cde.webp" width="400" height="533" alt="" loading="lazy">
-            <img src="capa-comprar-cde.webp" width="400" height="533" alt="" loading="lazy">
-            <span class="fan-count">12 GUIAS</span>
-        </div>
-        <div class="fc-body">
-            <h2 class="fc-title gold-text">Guias do Paraguai</h2>
-            <span class="f-sign">coleção</span>
-            <p class="fc-text">12 guias em PDF: residência, empresa, carro, imóvel e impostos.</p>
-            <p class="price"><b class="gold-text">R$ 147</b><small>coleção completa</small></p>
-            <a id="offer-link" class="btn btn-blue" data-id="guias-pagos" data-nome="Guias do Paraguai" href="https://fronteiraplay.com/colecao.php" target="_blank" rel="noopener">Quero os guias <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></a>
-        </div>
-    </section>
-
-    <!-- MUTIRÃO 2026 (temporário: some sozinho depois de 26/10/2026 23h59, junto com a folha e o item do menu) -->
-    <section class="feature-card mutirao glass reveal" id="mutirao-bloco" data-menu="Mutirão">
-        <div class="fc-media">
-            <img src="bg-ponte-noite.webp" width="900" height="1117" alt="Ponte da Amizade ao entardecer" loading="lazy" style="object-position:50% 40%">
-        </div>
-        <div class="fc-body">
-            <h2 class="fc-title gold-text">Mutirão 2026</h2>
-            <span class="f-sign">o guia</span>
-            <p class="fc-text">Chegue ao Mutirão com todos os documentos certos.</p>
-            <button type="button" class="btn btn-blue" id="abrir-mutirao" data-id="mutirao-abrir" aria-haspopup="dialog" aria-controls="mutirao">Ver o guia <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></button>
-        </div>
-    </section>
-    <script>__expira('#mutirao-bloco', '2026-10-26T23:59:59-03:00');</script>
-
+    
     <!-- MAIS DO DIEGO -->
     <h2 class="section-title reveal" id="mais" data-menu="Mais"><span class="st gold-text">Mais do Diego</span><span class="sub" aria-hidden="true">conteúdo</span></h2>
     <div class="list">
@@ -800,34 +755,6 @@
     </a>
 </div>
 
-<!-- FOLHA: GUIA DO MUTIRÃO -->
-<div class="sheet-overlay" id="mutirao" role="dialog" aria-modal="true" aria-labelledby="mutirao-titulo" hidden>
-    <div class="sheet">
-        <div class="sheet-handle" aria-hidden="true"></div>
-        <button type="button" class="sheet-close" id="fechar-mutirao" aria-label="Fechar">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 2l10 10M12 2L2 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-        </button>
-        <p class="sheet-kicker">Ebook · Mutirão Migramóvel</p>
-        <h2 class="sheet-title" id="mutirao-titulo">Chegue ao Mutirão com tudo em mãos</h2>
-        <p class="sheet-intro">Um guia prático para o Mutirão Migramóvel: o que levar, o que validar antes e em que ordem preparar cada documento.</p>
-        <ul class="sheet-list">
-            <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="9" fill="#D4A44C"/><path d="M5 9l3 3 5-5" stroke="#0B1630" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Datas informadas dos mutirões</span></li>
-            <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="9" fill="#D4A44C"/><path d="M5 9l3 3 5-5" stroke="#0B1630" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Lista de documentos brasileiros exigidos</span></li>
-            <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="9" fill="#D4A44C"/><path d="M5 9l3 3 5-5" stroke="#0B1630" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Orientação sobre Apostila de Haia</span></li>
-            <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="9" fill="#D4A44C"/><path d="M5 9l3 3 5-5" stroke="#0B1630" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Validade de documentos e antecedentes</span></li>
-            <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="9" fill="#D4A44C"/><path d="M5 9l3 3 5-5" stroke="#0B1630" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Exigência da vacina de febre amarela impressa</span></li>
-            <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="9" fill="#D4A44C"/><path d="M5 9l3 3 5-5" stroke="#0B1630" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Valor médio das taxas (pagamento em guaranis)</span></li>
-            <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="9" fill="#D4A44C"/><path d="M5 9l3 3 5-5" stroke="#0B1630" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Cópias autenticadas em cartório paraguaio</span></li>
-            <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="9" fill="#D4A44C"/><path d="M5 9l3 3 5-5" stroke="#0B1630" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Polícia Nacional e Interpol</span></li>
-            <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="9" fill="#D4A44C"/><path d="M5 9l3 3 5-5" stroke="#0B1630" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Diferença entre Mercosul e Nova Lei</span></li>
-            <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="9" fill="#D4A44C"/><path d="M5 9l3 3 5-5" stroke="#0B1630" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Cronograma ideal de preparação</span></li>
-            <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="9" fill="#D4A44C"/><path d="M5 9l3 3 5-5" stroke="#0B1630" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Checklist final do que levar no dia</span></li>
-        </ul>
-        <a class="btn btn-blue" data-id="mutirao-comprar" data-nome="Guia do Mutirão (comprar)" href="https://pay.kiwify.com.br/VIIpXYB" target="_blank" rel="noopener">Quero o guia do Mutirão</a>
-    </div>
-</div>
-
-<script>__expira('#mutirao', '2026-10-26T23:59:59-03:00');</script>
 
 <script>
     /* ── NÚMEROS AO VIVO ──
@@ -894,11 +821,13 @@
         var cta = document.getElementById('cta-principal');
         var footer = document.querySelector('.footer');
         var mostrando = null;
+        var guiasVisiveis = false;
+        var blocoGuias = document.getElementById('offer');
         function atualizar() {
             var h = window.innerHeight;
             var ctaFora = cta.getBoundingClientRect().bottom < 0;
             var rodapeVisivel = footer.getBoundingClientRect().top < h + 110; // some antes de cobrir o último cartão
-            var mostrar = ctaFora && !rodapeVisivel;
+            var mostrar = ctaFora && !rodapeVisivel && !guiasVisiveis;
             if (mostrar === mostrando) return;
             mostrando = mostrar;
             dock.classList.toggle('show', mostrar);
@@ -907,72 +836,15 @@
         }
         addEventListener('scroll', atualizar, { passive: true });
         addEventListener('resize', atualizar);
+        if (blocoGuias && 'IntersectionObserver' in window) {
+            new IntersectionObserver(function (en) {
+                guiasVisiveis = en[0].isIntersecting;
+                atualizar();
+            }, { threshold: 0.05 }).observe(blocoGuias);
+        }
         atualizar();
     })();
 
-    /* ── FOLHA DO MUTIRÃO (some junto com o bloco depois do prazo) ── */
-    (function () {
-        var overlay = document.getElementById('mutirao');
-        var abrir = document.getElementById('abrir-mutirao');
-        if (!overlay || !abrir) return;
-        var sheet = overlay.querySelector('.sheet');
-        var aberto = false;
-
-        function open() {
-            overlay.hidden = false;
-            requestAnimationFrame(function () { overlay.classList.add('open'); });
-            document.body.style.overflow = 'hidden';
-            aberto = true;
-            try { history.pushState({ mutirao: 1 }, ''); } catch (e) {}
-            setTimeout(function () { document.getElementById('fechar-mutirao').focus(); }, 50);
-            if (window.__bioEvento) window.__bioEvento('Guia do Mutirão (abriu) | #mutirao');
-        }
-        function close(doHistory) {
-            if (!aberto) return;
-            aberto = false;
-            overlay.classList.remove('open');
-            sheet.style.transform = '';
-            document.body.style.overflow = '';
-            setTimeout(function () { if (!aberto) overlay.hidden = true; }, 350);
-            abrir.focus();
-            if (doHistory !== false && history.state && history.state.mutirao) history.back();
-        }
-
-        abrir.addEventListener('click', open);
-        document.getElementById('fechar-mutirao').addEventListener('click', function () { close(); });
-        overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
-        document.addEventListener('keydown', function (e) {
-            if (!aberto) return;
-            if (e.key === 'Escape') close();
-            if (e.key === 'Tab') {
-                var f = sheet.querySelectorAll('button, a[href]');
-                var first = f[0], last = f[f.length - 1];
-                if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-                else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-            }
-        });
-        // botão "voltar" do celular fecha a folha em vez de sair da página
-        addEventListener('popstate', function () { close(false); });
-
-        // arrastar para baixo para fechar
-        var y0 = null, dy = 0;
-        sheet.addEventListener('touchstart', function (e) {
-            if (sheet.scrollTop > 0) { y0 = null; return; }
-            y0 = e.touches[0].clientY; dy = 0;
-            sheet.style.transition = 'none';
-        }, { passive: true });
-        sheet.addEventListener('touchmove', function (e) {
-            if (y0 === null) return;
-            dy = Math.max(0, e.touches[0].clientY - y0);
-            sheet.style.transform = 'translateY(' + dy + 'px)';
-        }, { passive: true });
-        sheet.addEventListener('touchend', function () {
-            if (y0 === null) return;
-            sheet.style.transition = '';
-            if (dy > 110) close(); else sheet.style.transform = '';
-            y0 = null;
-        });
-    })();
 </script>
 <script>
     /* ── MENU FIXO: marcador dourado segue a seção visível ── */
@@ -1046,6 +918,7 @@
 
     function preparar(a) {
         var id = idOf(a), u;
+        if ((a.getAttribute('href') || '').charAt(0) === '#') return; // âncora interna: não mexer
         try { u = new URL(a.getAttribute('href'), location.href); } catch (e) { return; }
         if (u.hostname === 'wa.me') {
             if (/\[(IG|TT|YT|SITE|BIO)\]$/.test(decodeURIComponent((u.search.match(/[?&]text=([^&]*)/) || [0, ''])[1]))) return;
@@ -1118,7 +991,7 @@
             if (navigator.sendBeacon) navigator.sendBeacon(U, d); else (new Image()).src = U + '?' + d.toString() + '&_=' + Date.now();
         } catch (err) {}
     }
-    // cliques que não saem da página (ex.: abrir a folha do Mutirão)
+    // cliques que não saem da página (disponível para eventos internos)
     window.__bioEvento = function (a) { env('clique', { a: a.slice(0, 180), t: seg() }); };
     env('visita', {});
     medirRolagem();
